@@ -1,0 +1,167 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #add8e6;
+    color: #000;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header h1 {
+    font-size: 3em;
+}
+
+.logo img {
+    width: 100px;
+}
+
+/* Navigation */
+nav {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    display: block;
+}
+
+nav a:hover {
+    background-color: #003f7f;
+    color: white;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: flex-end; /* Tempatkan di kanan */
+    padding: 20px;
+    background-color: #ddd;
+    border-radius: 8px;
+}
+
+.kepala-dinas {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 30%; /* Atur lebar kepala dinas */
+}
+
+.foto-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 0 auto;
+    width: 200px;
+}
+
+.foto-placeholder {
+    width: 100%;
+    height: 150px;
+    background-color: #eee;
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 150px;
+    font-style: italic;
+}
+
+/* Info Perikanan */
+/* Info Perikanan */
+.info-perikanan {
+    display: flex;
+    justify-content: space-between;
+    background-color: #add8e6;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.info-kiri {
+    width: 48%;
+}
+
+.info-kanan {
+    width: 48%;
+}
+
+.info-kiri h2,
+.info-kanan h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.info-kiri .logo img {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+/* Hari Kunjungan */
+.info-kanan ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-kanan li {
+    margin-bottom: 5px;
+}
+
+/* Footer */
+footer {
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0; 
+    font-size: 0.8em; 
+}
