@@ -251,6 +251,7 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
+    background-color: #007BFF;
 }
 
 nav ul li {
@@ -272,10 +273,11 @@ nav ul li a:hover {
 .dropdown-content {
     display: none; /* Tersembunyi secara default */
     position: absolute;
+    top: 100%; /* Posisi tepat di bawah navbar */
+    left: 0; /* Mulai dari kiri elemen dropdown */
     background-color: white;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Bayangan dropdown */
     z-index: 1;
-    min-width: 160px; /* Lebar dropdown */
 }
 
 .dropdown-content a {

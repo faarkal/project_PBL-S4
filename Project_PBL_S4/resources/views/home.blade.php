@@ -162,6 +162,36 @@
         });
     </script>
 
+    <script>
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById("dropdownMenu");
+            const parentDropdown = document.querySelector(".dropdown");
+
+            // Toggle tampilan dropdown
+            if (dropdownMenu.style.display === "block") {
+                dropdownMenu.style.display = "none";
+                parentDropdown.classList.remove("active");
+            } else {
+                dropdownMenu.style.display = "block";
+                parentDropdown.classList.add("active");
+            }
+        }
+
+        // Tutup dropdown jika pengguna mengklik di luar menu
+        window.onclick = function(event) {
+            const dropdownMenu = document.getElementById("dropdownMenu");
+            const parentDropdown = document.querySelector(".dropdown");
+
+            if (!event.target.matches('.dropbtn')) {
+                if (dropdownMenu.style.display === "block") {
+                    dropdownMenu.style.display = "none";
+                    parentDropdown.classList.remove("active");
+                }
+            }
+        }
+    </script>
+
+
 
 </body>
 </html>
