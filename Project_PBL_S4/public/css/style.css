@@ -62,7 +62,7 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #003f7f;
+    background-color: #007bff;
     color: white;
 }
 
@@ -273,10 +273,10 @@ nav ul li a:hover {
 .dropdown-content {
     display: none; /* Tersembunyi secara default */
     position: absolute;
-    top: 100%; /* Posisi tepat di bawah navbar */
+    top: 127%; /* Posisi tepat di bawah navbar */
     left: 0; /* Mulai dari kiri elemen dropdown */
     background-color: white;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Bayangan dropdown */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Bayangan dropdown */
     z-index: 1;
 }
 
