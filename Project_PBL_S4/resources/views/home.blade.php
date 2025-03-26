@@ -22,12 +22,19 @@
 
     <nav>
         <ul>
-            <li><a href="#">HOME</a></li>
+            <li>
+                <div class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <a href="#">HOME</a>
+            </li>
             <li><a href="#">PROFILE</a></li>
             <li class="dropdown">
                 <a href="#" class="dropbtn" onclick="toggleDropdown()">LAPORAN</a>
                 <div id="dropdownMenu" class="dropdown-content">
-                    <a href="#">Laporan Produksi</a>
+                    <a href="{{ route('laporan.produksi') }}">Laporan Produksi</a>
                     <a href="#">Laporan Penjualan</a>
                     <a href="#">Laporan Induk</a>
                 </div>
@@ -162,8 +169,27 @@
         });
     </script>
 
+    <script>
+        function toggleHamburgerMenu() {
+            const menuContent = document.getElementById("hamburgerMenuContent");
+            
+            // Toggle tampilan menu tambahan
+            if (menuContent.style.display === "block") {
+                menuContent.style.display = "none";
+            } else {
+                menuContent.style.display = "block";
+            }
+        }
 
-
+        // Tutup hamburger menu jika pengguna mengklik di luar area
+        window.onclick = function(event) {
+            const menuContent = document.getElementById("hamburgerMenuContent");
+            
+            if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
+                menuContent.style.display = "none";
+            }
+        }
+    </script>
 
 
 </body>
