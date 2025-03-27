@@ -271,6 +271,31 @@ nav ul li a:hover {
     background-color: #0056b3;
 }
 
+/* Style untuk dropdown */
+.dropdown-content {
+    display: none; /* Tersembunyi secara default */
+    position: absolute;
+    top: 100%; /* Posisi tepat di bawah navbar */
+    left: 0; /* Mulai dari kiri elemen dropdown */
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Bayangan dropdown */
+    z-index: 1;
+    min-width: 150px; /* Lebar minimum untuk dropdown */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block; /* Tampilkan sebagai blok */
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1; /* Warna saat hover pada item dropdown */
+}
+
+
+
 /* Style untuk hamburger menu */
 .hamburger-menu {
     display: inline-block;

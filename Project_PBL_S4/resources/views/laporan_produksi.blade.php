@@ -28,21 +28,29 @@
                     <span></span>
                     <span></span>
                 </div>
-                <a href="#">HOME</a>
+                <a href="{{ route('home') }}">HOME</a>
             </li>
             <li><a href="#">PROFILE</a></li>
             <li class="dropdown">
-                <a href="#" class="dropbtn" onclick="toggleDropdown()">LAPORAN</a>
-                <div id="dropdownMenu" class="dropdown-content">
+                <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">LAPORAN</a>
+                <div id="laporanMenu" class="dropdown-content">
                     <a href="{{ route('laporan.produksi') }}">Laporan Produksi</a>
                     <a href="#">Laporan Penjualan</a>
                     <a href="#">Laporan Induk</a>
                 </div>
             </li>
-            <li><a href="#">HASIL</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown('hasilMenu')">HASIL</a>
+                <div id="hasilMenu" class="dropdown-content">
+                    <a href="#">Hasil Laporan Produksi</a>
+                    <a href="#">Hasil Laporan Penjualan</a>
+                    <a href="#">Hasil Laporan Induk</a>
+                </div>
+            </li>
             <li><a href="#">NOTA</a></li>
         </ul>
     </nav>
+
 
 
     <main class="full-screen-form">
@@ -134,28 +142,63 @@
         </p>
     </footer>
 
-    <!-- Script untuk dropdown navigasi -->
     <script>
-    function toggleDropdown() {
-        const dropdownMenu = document.getElementById("dropdownMenu");
-        if (dropdownMenu.style.display === "block") {
-            dropdownMenu.style.display = "none";
-        } else {
-            dropdownMenu.style.display = "block";
-        }
-    }
-
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            const dropdowns = document.getElementsByClassName("dropdown-content");
-            for (let i = 0; i < dropdowns.length; i++) {
-                const openDropdown = dropdowns[i];
-                if (openDropdown.style.display === "block") {
-                    openDropdown.style.display = "none";
-                }
+        function toggleHamburgerMenu() {
+            const menuContent = document.getElementById("hamburgerMenuContent");
+            
+            // Toggle tampilan menu tambahan
+            if (menuContent.style.display === "block") {
+                menuContent.style.display = "none";
+            } else {
+                menuContent.style.display = "block";
             }
         }
-    }
+
+        // Tutup hamburger menu jika pengguna mengklik di luar area
+        window.onclick = function(event) {
+            const menuContent = document.getElementById("hamburgerMenuContent");
+            
+            if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
+                menuContent.style.display = "none";
+            }
+        }
     </script>
+
+<script>
+        function toggleDropdown(menuId) {
+            const menu = document.getElementById(menuId);
+
+            // Toggle tampilan dropdown
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                // Menutup semua dropdown sebelum membuka yang baru
+                const allDropdowns = document.querySelectorAll('.dropdown-content');
+                allDropdowns.forEach(function(dropdown) {
+                    dropdown.style.display = "none"; // Menyembunyikan semua dropdown
+                });
+                menu.style.display = "block"; // Menampilkan dropdown yang dipilih
+            }
+        }
+
+        // Tutup semua dropdown jika pengguna mengklik di luar menu
+        window.onclick = function(event) {
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            
+            dropdowns.forEach(function(dropdown) {
+                if (!event.target.closest('.dropbtn')) {
+                    dropdown.style.display = "none"; // Menyembunyikan dropdown jika klik di luar
+                }
+            });
+        }
+
+        // Mencegah dropdown tertutup saat item di dalamnya diklik
+        document.querySelectorAll('.dropdown-content a').forEach(function(item) {
+            item.addEventListener('click', function(event) {
+                event.stopPropagation(); // Mencegah event klik mencapai window
+            });
+        });
+    </script>
+
 </body>
 </html>

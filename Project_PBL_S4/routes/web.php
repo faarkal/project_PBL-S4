@@ -5,7 +5,7 @@ use App\Http\Controllers\LaporanProduksiController;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 
 
