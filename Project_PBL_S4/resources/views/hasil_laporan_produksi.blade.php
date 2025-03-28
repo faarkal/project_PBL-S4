@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balai Usaha Perikanan Genteng</title>
+    <title>Hasil Laporan Produksi</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -47,38 +47,64 @@
                     <a href="#">Hasil Laporan Induk</a>
                 </div>
             </li>
-
             <li><a href="#">NOTA</a></li>
         </ul>
     </nav>
 
-
     <main>
-        <section class="main-content">
-            <div class="info-kiri-text">
-                <h2>Selamat Datang di Balai Usaha Perikanan Genteng</h2>
-                <br>
-                    <p>
-                        Balai Usaha Perikanan Genteng adalah unit pelayanan teknis di bawah Dinas Perikanan Kabupaten Banyuwangi.
-                        Kami berkomitmen untuk memberikan pelayanan terbaik dalam pengembangan usaha perikanan di wilayah Genteng dan sekitarnya.
-                    </p>
-                    <p>
-                        Melalui berbagai program dan kegiatan, kami berupaya meningkatkan produktivitas dan kesejahteraan para pelaku usaha perikanan.
-                    </p>
+        <div>
+            <h2>Hasil Laporan Produksi Bibit Ikan</h2>
+            <br>
+
+            <!-- Bagian atas tabel: Tambah Data, Show Entries, Search -->
+            <div class="table-top">
+                <button class="btn-tambah-data">
+                    <i class="fas fa-plus"></i> Tambah Data
+                </button>
+                <div class="table-search">
+                    Search:
+                    <input type="text" placeholder="Cari...">
+                </div>
             </div>
 
-            <div class="kepala-dinas">
-                <h2>KEPALA DINAS</h2>
-                    <div class="foto-container">
-                        <div class="foto-placeholder">FOTO</div>
-                    </div>
-                    <p>Nama Menteri<br>Menteri Kelautan dan Perikanan</p>
-            </div>
+            <!-- Tabel untuk menampilkan hasil -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Jenis Bibit</th>
+                        <th>Bulan Lahir</th>
+                        <th>Jumlah Bibit</th>
+                        <th>Harga Bibit (Rp)</th>
+                        <th>Aksi</th> <!-- Tambahkan kolom Aksi -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($laporanProduksi as $key => $laporan)
+                    <tr>
+                        <td>{{ $key + 1 }}</td> <!-- Nomor urut -->
+                        <td>{{ $laporan->jenis_bibit }}</td>
+                        <td>{{ date('F Y', strtotime($laporan->bulan_lahir)) }}</td>
+                        <td>{{ $laporan->jumlah_bibit }}</td>
+                        <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td>
+                        <td>
+                            <button class="btn-edit">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn-delete">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
-        </section>
+        </div>
+    </main>
+    
 
-
-        <section class="info-perikanan">
+    <section class="info-perikanan">
             <div class="info-kiri">
                 <div class="perikanan-header">
                     <div class="logo">
@@ -191,3 +217,4 @@
 
 </body>
 </html>
+

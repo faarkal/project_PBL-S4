@@ -44,19 +44,20 @@
             <li class="dropdown">
                 <a href="#" class="dropbtn" onclick="toggleDropdown('hasilMenu')">HASIL</a>
                 <div id="hasilMenu" class="dropdown-content">
-                    <a href="#">Hasil Laporan Produksi</a>
+                    <a href="{{ route('hasil.laporan.produksi') }}">Hasil Laporan Produksi</a>
                     <a href="#">Hasil Laporan Penjualan</a>
                     <a href="#">Hasil Laporan Induk</a>
                 </div>
             </li>
+
             <li><a href="#">NOTA</a></li>
         </ul>
     </nav>
 
 
 
-    <main class="full-screen-form">
-        <div class="form-container">
+    <main>
+        <div>
             <h2>Laporan Produksi Bibit Ikan</h2>
             <form action="{{ route('laporan.produksi.store') }}" method="POST">
                 @csrf
@@ -86,6 +87,7 @@
             </form>
         </div>
     </main>
+
 
     <section class="info-perikanan">
         <div class="info-kiri">
