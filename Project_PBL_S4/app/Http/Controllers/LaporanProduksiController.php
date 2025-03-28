@@ -25,6 +25,11 @@ class LaporanProduksiController extends Controller
         $bibit->harga_bibit = $request->harga_bibit;
         $bibit->save();
 
-        return redirect()->route('laporan.produksi')->with('success', 'Data berhasil disimpan!');
+       // Tambahkan flash message
+       session()->flash('success', 'Data berhasil disimpan!');
+
+       return redirect()->route('laporan.produksi');
     }
+
+    
 }

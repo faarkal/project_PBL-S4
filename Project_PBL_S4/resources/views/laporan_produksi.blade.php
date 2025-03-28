@@ -6,6 +6,8 @@
     <title>Laporan Produksi - Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <header>
@@ -65,7 +67,7 @@
 
                 <div class="form-group">
                     <label for="bulan_lahir">Bulan Lahir Bibit:</label>
-                    <input type="month" id="bulan_lahir" name="bulan_lahir" required>
+                    <input type="date" id="bulan_lahir" name="bulan_lahir" required>
                 </div>
 
                 <div class="form-group">
@@ -104,9 +106,6 @@
                 <a href="#" style="color: #3b5998;"><i class="fab fa-facebook"></i></a>
             </div>
         </div>
-
-
-
 
         <div class="info-kanan">
             <h3>HARI KUNJUNGAN</h3>
@@ -196,6 +195,19 @@
                 event.stopPropagation(); 
             });
         });
+    </script>
+
+    <script>
+        @if(session()->has('success'))
+            Swal.fire({
+                icon: 'success',
+                title: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                position: 'top-end',
+                toast: true,
+            });
+        @endif
     </script>
 
 </body>
