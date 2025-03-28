@@ -211,7 +211,7 @@ footer p {
 }
 
 .popup {
-    display: none; /* Tersembunyi secara default */
+    display: none; 
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -219,15 +219,15 @@ footer p {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang transparan */
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .popup-content {
     background-color: #fefefe;
-    margin: 15% auto; /* Pusatkan popup */
+    margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Lebar popup */
+    width: 80%; 
 }
 
 .close {
@@ -250,14 +250,14 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    background-color: #007bff; /* Warna latar navbar */
-    align-items: center; /* Vertikal center */
+    background-color: #007bff; 
+    align-items: center; 
 }
 
 nav ul li {
     position: relative;
-    display: flex; /* Mengatur ikon dan teks dalam satu baris */
-    align-items: center; /* Vertikal center */
+    display: flex; 
+    align-items: center;
 }
 
 nav ul li a {
@@ -273,25 +273,25 @@ nav ul li a:hover {
 
 /* Style untuk dropdown */
 .dropdown-content {
-    display: none; /* Tersembunyi secara default */
+    display: none; 
     position: absolute;
-    top: 100%; /* Posisi tepat di bawah navbar */
-    left: 0; /* Mulai dari kiri elemen dropdown */
+    top: 100%; 
+    left: 0; 
     background-color: white;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Bayangan dropdown */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); 
     z-index: 1;
-    min-width: 150px; /* Lebar minimum untuk dropdown */
+    min-width: 150px; 
 }
 
 .dropdown-content a {
     color: black;
     padding: 10px 15px;
     text-decoration: none;
-    display: block; /* Tampilkan sebagai blok */
+    display: block; 
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1; /* Warna saat hover pada item dropdown */
+    background-color: #f1f1f1; 
 }
 
 
@@ -308,16 +308,16 @@ nav ul li a:hover {
     width: 25px;
     height: 3px;
     margin: 5px 0;
-    background-color: black; /* Warna garis */
+    background-color: black; 
 }
 
 
 /* Style untuk menu tambahan yang muncul */
 .hamburger-menu-content {
-    display: none; /* Tersembunyi secara default */
+    display: none;
     position: absolute;
-    top: 50px; /* Posisi di bawah navbar */
-    left: 10px; /* Posisi relatif terhadap hamburger menu */
+    top: 50px; 
+    left: 10px; 
     background-color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     padding: 10px;
@@ -345,12 +345,12 @@ nav ul li a:hover {
 
 /* Style untuk dropdown */
 .dropdown-content {
-    display: none; /* Tersembunyi secara default */
+    display: none; 
     position: absolute;
-    top: 123%; /* Posisi tepat di bawah navbar */
-    left: 0; /* Mulai dari kiri elemen dropdown */
+    top: 123%; 
+    left: 0; 
     background-color: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Bayangan dropdown */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 1;
 }
 
@@ -358,21 +358,21 @@ nav ul li a:hover {
     color: black;
     padding: 10px 15px;
     text-decoration: none;
-    display: block; /* Tampilkan sebagai blok */
+    display: block; 
 }
 
 .dropdown-content a:active {
-    color: black; /* Warna teks saat diklik */
-    background-color: #ddd; /* Warna latar belakang saat diklik */
+    color: black; 
+    background-color: #ddd;
 }
 
 .dropdown-content a:hover {
-    background-color: #23d5f5; /* Warna saat hover pada item dropdown */
+    background-color: #23d5f5; 
 }
 
 /* Tampilkan dropdown saat hover */
 .dropdown:hover .dropdown-content {
-    display: block; /* Tampilkan menu dropdown */
+    display: block;
 }
 
 
@@ -438,17 +438,17 @@ nav ul li a:hover {
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%; /* Tinggi penuh layar */
-    font-family: Arial, sans-serif; /* Font default */
+    height: 100%; 
+    font-family: Arial, sans-serif; 
 }
 
 /* Style untuk form layar penuh */
 .full-screen-form {
     display: flex;
-    justify-content: center; /* Pusatkan secara horizontal */
-    align-items: center; /* Pusatkan secara vertikal */
-    height: 100%; /* Tinggi penuh layar */
-    background-color: #f8f9fa; /* Warna latar belakang */
+    justify-content: center; 
+    align-items: center;
+    height: 100%;
+    background-color: #f8f9fa; 
 }
 
 /* Container form */
@@ -456,9 +456,9 @@ body, html {
     background-color: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Bayangan di bawah form */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
     width: 100%;
-    max-width: 600px; /* Lebar maksimal form */
+    max-width: 600px; 
 }
 
 /* Judul form */
@@ -503,5 +503,5 @@ body, html {
 }
 
 .btn-submit:hover {
-    background-color: #218838; /* Warna tombol saat hover */
+    background-color: #218838;
 }

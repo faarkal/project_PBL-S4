@@ -139,7 +139,6 @@
         function toggleHamburgerMenu() {
             const menuContent = document.getElementById("hamburgerMenuContent");
             
-            // Toggle tampilan menu tambahan
             if (menuContent.style.display === "block") {
                 menuContent.style.display = "none";
             } else {
@@ -147,7 +146,6 @@
             }
         }
 
-        // Tutup hamburger menu jika pengguna mengklik di luar area
         window.onclick = function(event) {
             const menuContent = document.getElementById("hamburgerMenuContent");
             
@@ -161,34 +159,30 @@
         function toggleDropdown(menuId) {
             const menu = document.getElementById(menuId);
 
-            // Toggle tampilan dropdown
             if (menu.style.display === "block") {
                 menu.style.display = "none";
             } else {
-                // Menutup semua dropdown sebelum membuka yang baru
                 const allDropdowns = document.querySelectorAll('.dropdown-content');
                 allDropdowns.forEach(function(dropdown) {
-                    dropdown.style.display = "none"; // Menyembunyikan semua dropdown
+                    dropdown.style.display = "none"; 
                 });
-                menu.style.display = "block"; // Menampilkan dropdown yang dipilih
+                menu.style.display = "block"; 
             }
         }
 
-        // Tutup semua dropdown jika pengguna mengklik di luar menu
         window.onclick = function(event) {
             const dropdowns = document.querySelectorAll('.dropdown-content');
             
             dropdowns.forEach(function(dropdown) {
                 if (!event.target.closest('.dropbtn')) {
-                    dropdown.style.display = "none"; // Menyembunyikan dropdown jika klik di luar
+                    dropdown.style.display = "none"; 
                 }
             });
         }
 
-        // Mencegah dropdown tertutup saat item di dalamnya diklik
         document.querySelectorAll('.dropdown-content a').forEach(function(item) {
             item.addEventListener('click', function(event) {
-                event.stopPropagation(); // Mencegah event klik mencapai window
+                event.stopPropagation();
             });
         });
     </script>
