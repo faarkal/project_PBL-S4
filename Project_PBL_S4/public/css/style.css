@@ -294,8 +294,6 @@ nav ul li a:hover {
     background-color: #f1f1f1; 
 }
 
-
-
 /* Style untuk hamburger menu */
 .hamburger-menu {
     display: inline-block;
@@ -508,8 +506,8 @@ body, html {
 
 form {
     width: 100%;
-    max-width: 1300px; /* Batasi lebar maksimum form */
-    margin: 0 auto; /* Pusatkan form di layar */
+    max-width: 1300px; 
+    margin: 0 auto; 
     padding: 20px;
     box-sizing: border-box;
 }
@@ -550,19 +548,19 @@ input[type="number"] {
 /*tabel*/
 main {
     width: 100%;
-    padding: 20px; /* Tambahkan padding agar tidak terlalu mepet ke tepi layar */
-    box-sizing: border-box; /* Pastikan padding tidak menambah lebar elemen */
+    padding: 20px; 
+    box-sizing: border-box;
 }
 
 .table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .table th, .table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 6px;
     text-align: left;
 }
 
@@ -581,15 +579,31 @@ main {
     margin-bottom: 10px;
 }
 
-.btn-tambah-data {
-    background-color: #4CAF50;
+.total-harga {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.table-top h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.link-add-data {
+    background-color: #51db56;
     color: white;
     padding: 8px 16px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
+    text-decoration: none;
 }
 
+.link-add-data:hover {
+    background-color: #3cc243;
+}
 .table-search {
     display: flex;
     align-items: center;
@@ -614,8 +628,45 @@ main {
 
 .btn-edit {
     background-color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
 }
 
 .btn-delete {
     background-color: #dc3545;
+}
+
+.btn-delete:hover {
+    background-color: #c42736;
+}
+
+.table-search form {
+    display: flex;
+    align-items: center;
+}
+
+.table-search input[type="text"] {
+    margin-left: 5px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.table-search button {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.swal2-popup {
+    font-size: 16px;
+    border-radius: 10px; 
 }

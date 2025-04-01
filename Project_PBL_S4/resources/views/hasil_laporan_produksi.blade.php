@@ -54,16 +54,17 @@
     <main>
         <div>
             <h2>Hasil Laporan Produksi Bibit Ikan</h2>
-            <br>
 
-            <!-- Bagian atas tabel: Tambah Data, Show Entries, Search -->
             <div class="table-top">
-                <button class="btn-tambah-data">
-                    <i class="fas fa-plus"></i> Tambah Data
-                </button>
+                <div>
+                    <a href="{{ route('laporan.produksi') }}" class="link-add-data">Tambah Data</a>
+                </div>
                 <div class="table-search">
                     Search:
-                    <input type="text" placeholder="Cari...">
+                    <form action="{{ route('hasil.laporan.produksi') }}" method="GET">
+                        <input type="text" name="search" placeholder="Cari..." value="{{ request('search') }}">
+                        <button type="submit">Cari</button>
+                    </form>
                 </div>
             </div>
 
@@ -76,33 +77,43 @@
                         <th>Bulan Lahir</th>
                         <th>Jumlah Bibit</th>
                         <th>Harga Bibit (Rp)</th>
-                        <th>Aksi</th> <!-- Tambahkan kolom Aksi -->
+                        <th>Total Harga (Rp)</th> 
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($laporanProduksi as $key => $laporan)
                     <tr>
-                        <td>{{ $key + 1 }}</td> <!-- Nomor urut -->
-                        <td>{{ $laporan->jenis_bibit }}</td>
-                        <td>{{ date('F Y', strtotime($laporan->bulan_lahir)) }}</td>
+                        <td>{{ $key + 1 }}</td> 
+                        <td>{{ $laporan->jenis_bibit }}</td> 
+                        <td>{{ date('d F Y', strtotime($laporan->bulan_lahir)) }}</td> 
                         <td>{{ $laporan->jumlah_bibit }}</td>
-                        <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td>
+                        <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td> 
+                        <td>{{ number_format($laporan->jumlah_bibit * $laporan->harga_bibit, 0, ',', '.') }}</td>
                         <td>
-                            <button class="btn-edit">
+                            <form id="delete-form-{{ $laporan->id }}" action="{{ route('laporan.produksi.delete', $laporan->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                <button type="button" class="btn-delete" onclick="confirmDelete({{ $laporan->id }})">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </form>
+                            <a href="{{ route('laporan.produksi.edit', $laporan->id) }}" class="btn-edit">
                                 <i class="fas fa-edit"></i> Edit
-                            </button>
-                            <button class="btn-delete">
-                                <i class="fas fa-trash"></i> Delete
-                            </button>
+                            </a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
 
+            <!-- Total Harga Bibit -->
+            <div class="total-harga">
+                <strong>Total Harga Bibit: Rp {{ number_format($totalHargaBibit, 0, ',', '.') }}</strong>
+            </div>
+
         </div>
     </main>
-    
+
 
     <section class="info-perikanan">
             <div class="info-kiri">
@@ -123,9 +134,6 @@
                     <a href="#" style="color: #3b5998;"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
-
-
-
 
             <div class="info-kanan">
                 <h3>HARI KUNJUNGAN</h3>
@@ -161,6 +169,41 @@
             Copyright © 2025 Perikanan Kab. Banyuwangi - All rights reserved. | Create by PBL kelompok1.
         </p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin menghapus data ini?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal',
+                background: '#fff', 
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+
+        @if(session()->has('success'))
+            Swal.fire({
+                icon: 'success',
+                title: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                position: 'top-end',
+                toast: true,
+                background: '#fff', 
+            });
+        @endif
+    </script>
+
 
     <script>
         function toggleHamburgerMenu() {
@@ -213,7 +256,6 @@
             });
         });
     </script>
-
 
 </body>
 </html>

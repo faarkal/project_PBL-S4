@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Produksi - Balai Usaha Perikanan Genteng</title>
+    <title>Edit Laporan Produksi - Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </head>
 <body>
     <header>
@@ -56,34 +55,39 @@
 
     <main>
         <div>
-            <h2>Laporan Produksi Bibit Ikan</h2>
-            <form action="{{ route('laporan.produksi.store') }}" method="POST">
+            <h2>Edit Laporan Produksi Bibit Ikan</h2>
+            <form action="{{ route('laporan.produksi.update', $bibit->id) }}" method="POST">
                 @csrf
+                @method('PUT')
+
+                <!-- Jenis Bibit -->
                 <div class="form-group">
                     <label for="jenis_bibit">Jenis Bibit Ikan:</label>
-                    <input type="text" id="jenis_bibit" name="jenis_bibit" required>
+                    <input type="text" id="jenis_bibit" name="jenis_bibit" value="{{ $bibit->jenis_bibit }}" readonly required>
                 </div>
 
+                <!-- Bulan Lahir -->
                 <div class="form-group">
                     <label for="bulan_lahir">Bulan Lahir Bibit:</label>
-                    <input type="date" id="bulan_lahir" name="bulan_lahir" required value="{{ old('bulan_lahir') }}">
+                    <input type="date" id="bulan_lahir" name="bulan_lahir" value="{{ $bibit->bulan_lahir }}" required>
                 </div>
 
+                <!-- Jumlah Bibit -->
                 <div class="form-group">
                     <label for="jumlah_bibit">Jumlah Bibit:</label>
-                    <input type="number" id="jumlah_bibit" name="jumlah_bibit" min="1" required>
+                    <input type="number" id="jumlah_bibit" name="jumlah_bibit" value="{{ $bibit->jumlah_bibit }}" min="1" required>
                 </div>
 
+                <!-- Harga Bibit -->
                 <div class="form-group">
                     <label for="harga_bibit">Harga Bibit (Rp):</label>
-                    <input type="number" id="harga_bibit" name="harga_bibit" min="0" required>
+                    <input type="number" id="harga_bibit" name="harga_bibit" value="{{ $bibit->harga_bibit }}" min="0" required>
                 </div>
 
-                <button type="submit" class="btn-submit">
-                    Simpan Laporan
-                </button>
+                <!-- Tombol Simpan -->
+                <button type="submit" class="btn-submit">Update Laporan</button>
             </form>
-        </div>
+        </div> 
     </main>
 
     <section class="info-perikanan">
@@ -162,7 +166,7 @@
         }
     </script>
 
-<script>
+    <script>
         function toggleDropdown(menuId) {
             const menu = document.getElementById(menuId);
 
