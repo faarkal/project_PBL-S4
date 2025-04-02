@@ -82,29 +82,42 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($laporanProduksi as $key => $laporan)
-                    <tr>
-                        <td>{{ $key + 1 }}</td> 
-                        <td>{{ $laporan->jenis_bibit }}</td> 
-                        <td>{{ date('d F Y', strtotime($laporan->bulan_lahir)) }}</td> 
-                        <td>{{ $laporan->jumlah_bibit }}</td>
-                        <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td> 
-                        <td>{{ number_format($laporan->jumlah_bibit * $laporan->harga_bibit, 0, ',', '.') }}</td>
-                        <td>
-                            <form id="delete-form-{{ $laporan->id }}" action="{{ route('laporan.produksi.delete', $laporan->id) }}" method="POST" style="display: inline;">
-                                @csrf
-                                <button type="button" class="btn-delete" onclick="confirmDelete({{ $laporan->id }})">
-                                    <i class="fas fa-trash"></i> Delete
-                                </button>
-                            </form>
-                            <a href="{{ route('laporan.produksi.edit', $laporan->id) }}" class="btn-edit">
-                                <i class="fas fa-edit"></i> Edit
-                            </a>
-                        </td>
-                    </tr>
-                    @endforeach
+                    @if(isset($message))
+                        <tr>
+                            <td colspan="7" class="text-center">{{ $message }}</td>
+                        </tr>
+                    @else
+                        @foreach($laporanProduksi as $key => $laporan)
+                            <tr>
+                                <td>{{ $key + 1 }}</td> 
+                                <td>{{ $laporan->jenis_bibit }}</td> 
+                                <td>{{ $laporan->bulan_lahir }}</td> 
+                                <td>{{ $laporan->jumlah_bibit }}</td>
+                                <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td> 
+                                <td>{{ number_format($laporan->jumlah_bibit * $laporan->harga_bibit, 0, ',', '.') }}</td>
+                                <td>
+                                    <form id="delete-form-{{ $laporan->id }}" action="{{ route('laporan.produksi.delete', $laporan->id) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        <button type="button" class="btn-delete" onclick="confirmDelete({{ $laporan->id }})">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </button>
+                                    </form>
+                                    <a href="{{ route('laporan.produksi.edit', $laporan->id) }}" class="btn-edit">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
+
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 
             <!-- Total Harga Bibit -->
             <div class="total-harga">

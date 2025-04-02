@@ -561,11 +561,13 @@ main {
 .table th, .table td {
     border: 1px solid #ddd;
     padding: 6px;
-    text-align: left;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .table th {
     background-color: #f2f2f2;
+    font-weight: bold;
 }
 
 .table tr:hover {
