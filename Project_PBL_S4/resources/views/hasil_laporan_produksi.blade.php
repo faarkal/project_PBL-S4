@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hasil Laporan Produksi</title>
+    <title>Hasil Laporan Produksi - Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -47,7 +47,7 @@
                     <a href="#">Hasil Laporan Induk</a>
                 </div>
             </li>
-            <li><a href="#">NOTA</a></li>
+            <li><a href="/nota">NOTA</a></li>
         </ul>
     </nav>
 
@@ -272,4 +272,3 @@
 
 </body>
 </html>
-

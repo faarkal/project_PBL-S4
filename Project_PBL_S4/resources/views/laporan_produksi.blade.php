@@ -50,7 +50,7 @@
                 </div>
             </li>
 
-            <li><a href="#">NOTA</a></li>
+            <li><a href="/nota">NOTA</a></li>
         </ul>
     </nav>
 
