@@ -189,18 +189,5 @@
         });
     </script>
 
-    <script>
-        @if(session()->has('success'))
-            Swal.fire({
-                icon: 'success',
-                title: "{{ session('success') }}",
-                showConfirmButton: false,
-                timer: 3000,
-                position: 'top-end',
-                toast: true,
-            });
-        @endif
-    </script>
-
 </body>
 </html>
