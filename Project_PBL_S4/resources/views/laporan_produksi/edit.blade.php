@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Produksi - Balai Usaha Perikanan Genteng</title>
+    <title>Edit Laporan Produksi - Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </head>
 <body>
     <header>
@@ -55,28 +54,40 @@
     </nav>
 
     <main>
-    <section class="main-content">
-            <div class="info-kiri-text">
-                <h2>Selamat Datang di Balai Usaha Perikanan Genteng</h2>
-                <br>
-                    <p>
-                        Balai Usaha Perikanan Genteng adalah unit pelayanan teknis di bawah Dinas Perikanan Kabupaten Banyuwangi.
-                        Kami berkomitmen untuk memberikan pelayanan terbaik dalam pengembangan usaha perikanan di wilayah Genteng dan sekitarnya.
-                    </p>
-                    <p>
-                        Melalui berbagai program dan kegiatan, kami berupaya meningkatkan produktivitas dan kesejahteraan para pelaku usaha perikanan.
-                    </p>
-            </div>
+        <div>
+            <h2>Edit Laporan Produksi Bibit Ikan</h2>
+            <form action="{{ route('laporan.produksi.update', $bibit->id) }}" method="POST">
+                @csrf
+                @method('PUT')
 
-            <div class="kepala-dinas">
-                <h2>KEPALA DINAS</h2>
-                    <div class="foto-container">
-                        <div class="foto-placeholder">FOTO</div>
-                    </div>
-                    <p>Nama Menteri<br>Menteri Kelautan dan Perikanan</p>
-            </div>
+                <!-- Jenis Bibit -->
+                <div class="form-group">
+                    <label for="jenis_bibit">Jenis Bibit Ikan:</label>
+                    <input type="text" id="jenis_bibit" name="jenis_bibit" value="{{ $bibit->jenis_bibit }}" readonly required>
+                </div>
 
-        </section>
+                <!-- Bulan Lahir -->
+                <div class="form-group">
+                    <label for="bulan_lahir">Bulan Lahir Bibit:</label>
+                    <input type="date" id="bulan_lahir" name="bulan_lahir" value="{{ $bibit->bulan_lahir }}" required>
+                </div>
+
+                <!-- Jumlah Bibit -->
+                <div class="form-group">
+                    <label for="jumlah_bibit">Jumlah Bibit:</label>
+                    <input type="number" id="jumlah_bibit" name="jumlah_bibit" value="{{ $bibit->jumlah_bibit }}" min="1" required>
+                </div>
+
+                <!-- Harga Bibit -->
+                <div class="form-group">
+                    <label for="harga_bibit">Harga Bibit (Rp):</label>
+                    <input type="number" id="harga_bibit" name="harga_bibit" value="{{ $bibit->harga_bibit }}" min="0" required>
+                </div>
+
+                <!-- Tombol Simpan -->
+                <button type="submit" class="btn-submit">Update Laporan</button>
+            </form>
+        </div> 
     </main>
 
     <section class="info-perikanan">
@@ -187,6 +198,19 @@
                 event.stopPropagation(); 
             });
         });
+    </script>
+
+    <script>
+        @if(session()->has('success'))
+            Swal.fire({
+                icon: 'success',
+                title: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                position: 'top-end',
+                toast: true,
+            });
+        @endif
     </script>
 
 </body>

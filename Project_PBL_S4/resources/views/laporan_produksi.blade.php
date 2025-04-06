@@ -6,6 +6,8 @@
     <title>Laporan Produksi - Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <header>
@@ -28,25 +30,32 @@
                     <span></span>
                     <span></span>
                 </div>
-                <a href="#">HOME</a>
+                <a href="{{ route('home') }}">HOME</a>
             </li>
             <li><a href="#">PROFILE</a></li>
             <li class="dropdown">
-                <a href="#" class="dropbtn" onclick="toggleDropdown()">LAPORAN</a>
-                <div id="dropdownMenu" class="dropdown-content">
+                <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">LAPORAN</a>
+                <div id="laporanMenu" class="dropdown-content">
                     <a href="{{ route('laporan.produksi') }}">Laporan Produksi</a>
                     <a href="#">Laporan Penjualan</a>
                     <a href="#">Laporan Induk</a>
                 </div>
             </li>
-            <li><a href="#">HASIL</a></li>
-            <li><a href="#">NOTA</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown('hasilMenu')">HASIL</a>
+                <div id="hasilMenu" class="dropdown-content">
+                    <a href="{{ route('hasil.laporan.produksi') }}">Hasil Laporan Produksi</a>
+                    <a href="#">Hasil Laporan Penjualan</a>
+                    <a href="#">Hasil Laporan Induk</a>
+                </div>
+            </li>
+
+            <li><a href="/nota">NOTA</a></li>
         </ul>
     </nav>
 
-
-    <main class="full-screen-form">
-        <div class="form-container">
+    <main>
+        <div>
             <h2>Laporan Produksi Bibit Ikan</h2>
             <form action="{{ route('laporan.produksi.store') }}" method="POST">
                 @csrf
@@ -57,7 +66,7 @@
 
                 <div class="form-group">
                     <label for="bulan_lahir">Bulan Lahir Bibit:</label>
-                    <input type="month" id="bulan_lahir" name="bulan_lahir" required>
+                    <input type="date" id="bulan_lahir" name="bulan_lahir" required value="{{ old('bulan_lahir') }}">
                 </div>
 
                 <div class="form-group">
@@ -97,9 +106,6 @@
             </div>
         </div>
 
-
-
-
         <div class="info-kanan">
             <h3>HARI KUNJUNGAN</h3>
             <ul>
@@ -134,28 +140,74 @@
         </p>
     </footer>
 
-    <!-- Script untuk dropdown navigasi -->
     <script>
-    function toggleDropdown() {
-        const dropdownMenu = document.getElementById("dropdownMenu");
-        if (dropdownMenu.style.display === "block") {
-            dropdownMenu.style.display = "none";
-        } else {
-            dropdownMenu.style.display = "block";
-        }
-    }
-
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            const dropdowns = document.getElementsByClassName("dropdown-content");
-            for (let i = 0; i < dropdowns.length; i++) {
-                const openDropdown = dropdowns[i];
-                if (openDropdown.style.display === "block") {
-                    openDropdown.style.display = "none";
-                }
+        function toggleHamburgerMenu() {
+            const menuContent = document.getElementById("hamburgerMenuContent");
+            
+           
+            if (menuContent.style.display === "block") {
+                menuContent.style.display = "none";
+            } else {
+                menuContent.style.display = "block";
             }
         }
-    }
+
+       
+        window.onclick = function(event) {
+            const menuContent = document.getElementById("hamburgerMenuContent");
+            
+            if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
+                menuContent.style.display = "none";
+            }
+        }
     </script>
+
+<script>
+        function toggleDropdown(menuId) {
+            const menu = document.getElementById(menuId);
+
+           
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+               
+                const allDropdowns = document.querySelectorAll('.dropdown-content');
+                allDropdowns.forEach(function(dropdown) {
+                    dropdown.style.display = "none";
+                });
+                menu.style.display = "block";
+            }
+        }
+
+        window.onclick = function(event) {
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            
+            dropdowns.forEach(function(dropdown) {
+                if (!event.target.closest('.dropbtn')) {
+                    dropdown.style.display = "none";
+                }
+            });
+        }
+
+        document.querySelectorAll('.dropdown-content a').forEach(function(item) {
+            item.addEventListener('click', function(event) {
+                event.stopPropagation(); 
+            });
+        });
+    </script>
+
+    <script>
+        @if(session()->has('success'))
+            Swal.fire({
+                icon: 'success',
+                title: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                position: 'top-end',
+                toast: true,
+            });
+        @endif
+    </script>
+
 </body>
 </html>
