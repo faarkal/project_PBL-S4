@@ -76,10 +76,17 @@
 
             <div class="kepala-dinas">
                 <h2>KEPALA DINAS</h2>
+<<<<<<< HEAD
                 <div class="foto-container">
                     <div class="foto-placeholder">FOTO</div>
                 </div>
                 <p>Nama Menteri<br>Menteri Kelautan dan Perikanan</p>
+=======
+                    <div class="foto-container">
+                        <div class="foto-placeholder">FOTO</div>
+                    </div>
+                    <p>Nama Kepala Dinas<br>Balai Usaha Perikanan Genteng</p>
+>>>>>>> 405ed6c1a3465b133044d06a56acedf6a1b5f141
             </div>
 
         </section>

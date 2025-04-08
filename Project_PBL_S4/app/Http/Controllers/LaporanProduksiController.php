@@ -29,7 +29,7 @@ class LaporanProduksiController extends Controller
        // Tambahkan flash message
        session()->flash('success', 'Data berhasil disimpan!');
 
-       return redirect()->route('laporan.produksi');
+       return redirect()->route('hasil.laporan.produksi');
     }
 
     public function edit($id)
