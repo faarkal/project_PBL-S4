@@ -73,7 +73,7 @@
                     <div class="foto-container">
                         <div class="foto-placeholder">FOTO</div>
                     </div>
-                    <p>Nama Menteri<br>Menteri Kelautan dan Perikanan</p>
+                    <p>Nama Kepala Dinas<br>Balai Usaha Perikanan Genteng</p>
             </div>
 
         </section>
