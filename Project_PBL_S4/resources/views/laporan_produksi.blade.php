@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
+
 <body>
     <header>
         <div class="header-content">
@@ -38,7 +40,7 @@
                 <div id="laporanMenu" class="dropdown-content">
                     <a href="{{ route('laporan.produksi') }}">Laporan Produksi</a>
                     <a href="#">Laporan Penjualan</a>
-                    <a href="#">Laporan Induk</a>
+                    <a href="{{ route('hasil.laporan.induk') }}">Laporan Induk</a>
                 </div>
             </li>
             <li class="dropdown">
@@ -94,10 +96,11 @@
                 </div>
                 <h2>PERIKANAN</h2>
             </div>
-                <p><strong>DINAS PERIKANAN BANYUWANGI</strong></p>
-                <p>UP: Balai Benih Ikan Genteng<br>Jl. KH. Agus Salim No.106, Lingkungan Cuking RW, Mojopanggung, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68424.</p>
-                <p>Telephone:</p>
-                <p>Email:</p>
+            <p><strong>DINAS PERIKANAN BANYUWANGI</strong></p>
+            <p>UP: Balai Benih Ikan Genteng<br>Jl. KH. Agus Salim No.106, Lingkungan Cuking RW, Mojopanggung, Kec.
+                Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68424.</p>
+            <p>Telephone:</p>
+            <p>Email:</p>
             <div class="social-icons">
                 <a href="#" style="color: #c32aa3;"><i class="fab fa-instagram"></i></a>
                 <a href="#" style="color: #ff0000;"><i class="fab fa-youtube"></i></a>
@@ -143,8 +146,8 @@
     <script>
         function toggleHamburgerMenu() {
             const menuContent = document.getElementById("hamburgerMenuContent");
-            
-           
+
+
             if (menuContent.style.display === "block") {
                 menuContent.style.display = "none";
             } else {
@@ -152,25 +155,25 @@
             }
         }
 
-       
+
         window.onclick = function(event) {
             const menuContent = document.getElementById("hamburgerMenuContent");
-            
+
             if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
                 menuContent.style.display = "none";
             }
         }
     </script>
 
-<script>
+    <script>
         function toggleDropdown(menuId) {
             const menu = document.getElementById(menuId);
 
-           
+
             if (menu.style.display === "block") {
                 menu.style.display = "none";
             } else {
-               
+
                 const allDropdowns = document.querySelectorAll('.dropdown-content');
                 allDropdowns.forEach(function(dropdown) {
                     dropdown.style.display = "none";
@@ -181,7 +184,7 @@
 
         window.onclick = function(event) {
             const dropdowns = document.querySelectorAll('.dropdown-content');
-            
+
             dropdowns.forEach(function(dropdown) {
                 if (!event.target.closest('.dropbtn')) {
                     dropdown.style.display = "none";
@@ -191,13 +194,13 @@
 
         document.querySelectorAll('.dropdown-content a').forEach(function(item) {
             item.addEventListener('click', function(event) {
-                event.stopPropagation(); 
+                event.stopPropagation();
             });
         });
     </script>
 
     <script>
-        @if(session()->has('success'))
+        @if (session()->has('success'))
             Swal.fire({
                 icon: 'success',
                 title: "{{ session('success') }}",
@@ -210,4 +213,5 @@
     </script>
 
 </body>
+
 </html>

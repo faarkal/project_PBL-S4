@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LaporanProduksiController;
 use App\Http\Controllers\HasilLaporanController;
 use App\Http\Controllers\NotaController;
-
+use App\Http\Controllers\LaporanIndukController;
 
 Route::get('/', function () {
     return view('home');
@@ -27,3 +27,7 @@ Route::post('/laporan-produksi/delete/{id}', [LaporanProduksiController::class, 
 
 Route::get('/nota', [NotaController::class, 'index'])->name('nota.index');
 Route::post('/nota/upload', [NotaController::class, 'upload'])->name('nota.upload');
+
+Route::get('/laporan-induk', [LaporanIndukController::class, 'index'])->name('laporan.induk');
+Route::get('/laporan-induk/edit/{id}', [LaporanIndukController::class, 'edit'])->name('laporan.induk.edit');
+Route::post('/laporan-induk/delete/{id}', [LaporanIndukController::class, 'destroy'])->name('laporan.induk.delete');
