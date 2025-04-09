@@ -30,15 +30,15 @@
                 </div>
                 <a href="#">HOME</a>
             </li>
-            <li><a href="#">PROFILE</a></li>
             <li class="dropdown">
-                <a href="#" class="dropbtn" onclick="toggleDropdown()">LAPORAN</a>
+                <a href="#" class="dropbtn" onclick="toggleDropdown()">PROFILE</a>
                 <div id="dropdownMenu" class="dropdown-content">
-                    <a href="{{ route('laporan.produksi') }}">Laporan Produksi</a>
-                    <a href="#">Laporan Penjualan</a>
-                    <a href="#">Laporan Induk</a>
+                    <a href="{{ route('laporan.produksi') }}">Profile Kepala Dinas</a>
+                    <a href="#">Data Profile Dinas</a>
+                    <a href="#">Visi-Misi</a>
                 </div>
             </li>
+            <li><a href="#">LAPORAN</a></li>
             <li><a href="#">HASIL</a></li>
             <li><a href="#">NOTA</a></li>
         </ul>
