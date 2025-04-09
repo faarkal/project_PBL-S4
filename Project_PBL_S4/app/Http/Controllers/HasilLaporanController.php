@@ -19,6 +19,7 @@ class HasilLaporanController extends Controller
                 'jenis_bibit',
                 'bulan_lahir',
                 'jumlah_bibit',
+                'kematian_ikan',
                 'harga_bibit',
                 DB::raw('jumlah_bibit * harga_bibit as total_harga') 
             )

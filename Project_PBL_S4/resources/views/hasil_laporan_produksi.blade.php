@@ -76,6 +76,7 @@
                         <th>Jenis Bibit</th>
                         <th>Bulan Lahir</th>
                         <th>Jumlah Bibit</th>
+                        <th>Kematian Ikan (%)</th>
                         <th>Harga Bibit (Rp)</th>
                         <th>Total Harga (Rp)</th> 
                         <th>Aksi</th>
@@ -84,7 +85,7 @@
                 <tbody>
                     @if(isset($message))
                         <tr>
-                            <td colspan="7" class="text-center">{{ $message }}</td>
+                            <td colspan="8" class="text-center">{{ $message }}</td>
                         </tr>
                     @else
                         @foreach($laporanProduksi as $key => $laporan)
@@ -93,6 +94,7 @@
                                 <td>{{ $laporan->jenis_bibit }}</td> 
                                 <td>{{ $laporan->bulan_lahir }}</td> 
                                 <td>{{ $laporan->jumlah_bibit }}</td>
+                                <td>{{ $laporan->kematian_ikan }}</td>
                                 <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td> 
                                 <td>{{ number_format($laporan->jumlah_bibit * $laporan->harga_bibit, 0, ',', '.') }}</td>
                                 <td>

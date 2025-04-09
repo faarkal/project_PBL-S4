@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Bibit;
+use App\Models\Laporan;
 
 class LaporanProduksiController extends Controller
 {
@@ -12,19 +13,15 @@ class LaporanProduksiController extends Controller
     {
         // Validasi input
         $request->validate([
-            'jenis_bibit' => 'required|string|max:255',
+            'jenis_bibit' => 'required',
             'bulan_lahir' => 'required|date',
-            'jumlah_bibit' => 'required|integer|min:1',
+            'jumlah_bibit' => 'required|integer|min:0',
+            'kematian_ikan' => 'required|numeric|min:0|max:100',
             'harga_bibit' => 'required|numeric|min:0',
         ]);
-
-        // Simpan data ke database
-        $bibit = new Bibit();
-        $bibit->jenis_bibit = $request->jenis_bibit;
-        $bibit->bulan_lahir = $request->bulan_lahir;
-        $bibit->jumlah_bibit = $request->jumlah_bibit;
-        $bibit->harga_bibit = $request->harga_bibit;
-        $bibit->save();
+    
+       Bibit::create($request->all());
+    
 
        // Tambahkan flash message
        session()->flash('success', 'Data berhasil disimpan!');
@@ -39,27 +36,31 @@ class LaporanProduksiController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        // Validasi input
-        $request->validate([
-            'jenis_bibit' => 'required|string|max:255',
-            'bulan_lahir' => 'required|date',
-            'jumlah_bibit' => 'required|integer|min:1',
-            'harga_bibit' => 'required|numeric|min:0',
-        ]);
+{
+    // Validasi input
+    $request->validate([
+        'jenis_bibit' => 'required|string|max:255',
+        'bulan_lahir' => 'required|date',
+        'jumlah_bibit' => 'required|integer|min:1',
+        'kematian_ikan' => 'required|numeric|min:0|max:100', 
+        'harga_bibit' => 'required|numeric|min:0',
+    ]);
 
-        // Update data di database
-        DB::table('bibits')->where('id', $id)->update([
-            'jenis_bibit' => $request->input('jenis_bibit'),
-            'bulan_lahir' => $request->input('bulan_lahir'),
-            'jumlah_bibit' => $request->input('jumlah_bibit'),
-            'harga_bibit' => $request->input('harga_bibit'),
-            'updated_at' => now(),
-        ]);
-        session()->flash('success', 'Data berhasil diperbarui!');
+    // Update data di database
+    DB::table('bibits')->where('id', $id)->update([
+        'jenis_bibit' => $request->input('jenis_bibit'),
+        'bulan_lahir' => $request->input('bulan_lahir'),
+        'jumlah_bibit' => $request->input('jumlah_bibit'),
+        'kematian_ikan' => $request->input('kematian_ikan'), 
+        'harga_bibit' => $request->input('harga_bibit'),
+        'updated_at' => now(),
+    ]);
 
-        return redirect()->route('hasil.laporan.produksi', $id);
-    }
+    session()->flash('success', 'Data berhasil diperbarui!');
+
+    return redirect()->route('hasil.laporan.produksi', $id);
+}
+
 
     public function destroy($id)
     {
