@@ -77,6 +77,7 @@
                         <th>Bulan Lahir</th>
                         <th>Jumlah Bibit</th>
                         <th>Kematian Ikan (%)</th>
+                        <th>Jumlah Bibit Akhir</th>
                         <th>Harga Bibit (Rp)</th>
                         <th>Total Harga (Rp)</th> 
                         <th>Aksi</th>
@@ -94,9 +95,10 @@
                                 <td>{{ $laporan->jenis_bibit }}</td> 
                                 <td>{{ $laporan->bulan_lahir }}</td> 
                                 <td>{{ $laporan->jumlah_bibit }}</td>
-                                <td>{{ $laporan->kematian_ikan }}</td>
+                                <td>{{ round($laporan->kematian_ikan) }}%</td>
+                                <td>{{ number_format($laporan->jumlah_bibit_akhir, 0, ',', '.') }}</td>
                                 <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td> 
-                                <td>{{ number_format($laporan->jumlah_bibit * $laporan->harga_bibit, 0, ',', '.') }}</td>
+                                <td>{{ number_format($laporan->total_harga, 0, ',', '.') }}</td>
                                 <td>
                                     <form id="delete-form-{{ $laporan->id }}" action="{{ route('laporan.produksi.delete', $laporan->id) }}" method="POST" style="display: inline;">
                                         @csrf
@@ -113,6 +115,7 @@
                     @endif
                 </tbody>
             </table>
+            
 
 @if(session('success'))
     <div class="alert alert-success">

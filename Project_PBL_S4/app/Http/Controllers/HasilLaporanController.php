@@ -21,7 +21,6 @@ class HasilLaporanController extends Controller
                 'jumlah_bibit',
                 'kematian_ikan',
                 'harga_bibit',
-                DB::raw('jumlah_bibit * harga_bibit as total_harga') 
             )
             ->when($keyword, function ($query, $keyword) {
                 return $query->where('jenis_bibit', 'like', '%' . $keyword . '%');
@@ -30,6 +29,8 @@ class HasilLaporanController extends Controller
             ->get()
             ->map(function ($item) {
                 $item->bulan_lahir = Carbon::parse($item->bulan_lahir)->translatedFormat('d F Y');
+                $item->jumlah_bibit_akhir = $item->jumlah_bibit - ($item->jumlah_bibit * ($item->kematian_ikan / 100)); //jumlah bibit akhir
+                $item->total_harga = $item->jumlah_bibit_akhir * $item->harga_bibit; //hitung total harga 
                 return $item;
             });
 
@@ -38,10 +39,8 @@ class HasilLaporanController extends Controller
             $message = "Data ikan yang Anda cari tidak tersedia.";
         }
 
-        // Hitung total harga bibit
-        $totalHargaBibit = DB::table('bibits')
-            ->select(DB::raw('SUM(jumlah_bibit * harga_bibit) as total_harga'))
-            ->first()->total_harga;
+       // Hitung total harga bibit (perubahan disini)
+       $totalHargaBibit = $laporanProduksi->sum('total_harga');
 
         return view('hasil_laporan_produksi', compact('laporanProduksi', 'keyword', 'totalHargaBibit', 'message'));
     }
