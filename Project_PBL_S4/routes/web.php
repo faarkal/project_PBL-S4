@@ -6,8 +6,7 @@ use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
     return view('home');
-});
-
+})->name('home');
 
 
 Route::get('/laporan-produksi', function () {
