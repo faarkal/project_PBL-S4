@@ -76,6 +76,8 @@
                         <th>Jenis Bibit</th>
                         <th>Bulan Lahir</th>
                         <th>Jumlah Bibit</th>
+                        <th>Kematian Ikan (%)</th>
+                        <th>Jumlah Bibit Akhir</th>
                         <th>Harga Bibit (Rp)</th>
                         <th>Total Harga (Rp)</th>
                         <th>Aksi</th>
@@ -84,7 +86,7 @@
                 <tbody>
                     @if(isset($message))
                         <tr>
-                            <td colspan="7" class="text-center">{{ $message }}</td>
+                            <td colspan="8" class="text-center">{{ $message }}</td>
                         </tr>
                     @else
                         @foreach($laporanProduksi as $key => $laporan)
@@ -95,6 +97,11 @@
                                 <td>{{ $laporan->jumlah_bibit }}</td>
                                 <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td>
                                 <td>{{ number_format($laporan->jumlah_bibit * $laporan->harga_bibit, 0, ',', '.') }}</td>
+                                <td>{{ round($laporan->kematian_ikan) }}%</td>
+                                <td>{{ number_format($laporan->jumlah_bibit_akhir, 0, ',', '.') }}</td>
+                                <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td> 
+                                <td>{{ number_format($laporan->total_harga, 0, ',', '.') }}</td>
+
                                 <td>
                                     <form id="delete-form-{{ $laporan->id }}" action="{{ route('laporan.produksi.delete', $laporan->id) }}" method="POST" style="display: inline;">
                                         @csrf
@@ -111,6 +118,7 @@
                     @endif
                 </tbody>
             </table>
+            
 
 @if(session('success'))
     <div class="alert alert-success">

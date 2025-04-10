@@ -78,6 +78,11 @@
                     <input type="number" id="jumlah_bibit" name="jumlah_bibit" value="{{ $bibit->jumlah_bibit }}" min="1" required>
                 </div>
 
+                <div class="form-group">
+                    <label for="kematian_ikan">Kematian Ikan (%):</label>
+                    <input type="number" id="kematian_ikan" name="kematian_ikan" step="0.01" min="0" max="100" required>
+                </div>
+
                 <!-- Harga Bibit -->
                 <div class="form-group">
                     <label for="harga_bibit">Harga Bibit (Rp):</label>
