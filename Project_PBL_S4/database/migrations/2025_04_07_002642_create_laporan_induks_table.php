@@ -9,16 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('laporan_induks', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_induk');
-            $table->string('jenis_kelamin');
-            $table->integer('jumlah');
-            $table->string('asal_induk');
-            $table->timestamps();
-        });
+    public function up()
+{
+    Schema::create('laporan_induks', function (Blueprint $table) {
+        $table->id();
+        $table->string('nama_induk');
+        $table->string('jenis_kelamin');
+        $table->string('asal_induk');
+        $table->integer('jumlah');
+        $table->date('tanggal_masuk');
+        $table->timestamps();
+    });
     }
 
     /**

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
     <header>
         <div class="header-content">
@@ -46,7 +44,7 @@
                 <div id="hasilMenu" class="dropdown-content">
                     <a href="{{ route('hasil.laporan.produksi') }}">Hasil Laporan Produksi</a>
                     <a href="#">Hasil Laporan Penjualan</a>
-                    <a href="#">Hasil Laporan Induk</a>
+                    <a href="{{ route('hasil.laporan.induk') }}">Hasil Laporan Induk</a>
                 </div>
             </li>
             <li><a href="/nota">NOTA</a></li>
@@ -84,45 +82,46 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (isset($message))
+                    @if(isset($message))
                         <tr>
                             <td colspan="7" class="text-center">{{ $message }}</td>
                         </tr>
                     @else
-                        @foreach ($laporanInduk as $key => $laporan)
-                            <td>{{ $laporan->jenis_induk }}</td>
-                            <td>{{ $laporan->bulan_lahir }}</td>
-                            <td>{{ $laporan->jumlah_induk }}</td>
-                            <td>{{ number_format($laporan->harga_induk, 0, ',', '.') }}</td>
-                            <td>{{ number_format($laporan->jumlah_induk * $laporan->harga_induk, 0, ',', '.') }}</td>
-                            <form id="delete-form-{{ $laporan->id }}"
-                                action="{{ route('laporan.produksi.delete', $laporan->id) }}" method="POST"
-                                style="display: inline;">
-                                @csrf
-                                <button type="button" class="btn-delete" onclick="confirmDelete({{ $laporan->id }})">
-                                    <i class="fas fa-trash"></i> Delete
-                                </button>
-                            </form>
-                            <a href="{{ route('laporan.produksi.edit', $laporan->id) }}" class="btn-edit">
-                                <i class="fas fa-edit"></i> Edit
-                            </a>
-                            </td>
+                        @foreach($laporanProduksi as $key => $laporan)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $laporan->jenis_bibit }}</td>
+                                <td>{{ $laporan->bulan_lahir }}</td>
+                                <td>{{ $laporan->jumlah_bibit }}</td>
+                                <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td>
+                                <td>{{ number_format($laporan->jumlah_bibit * $laporan->harga_bibit, 0, ',', '.') }}</td>
+                                <td>
+                                    <form id="delete-form-{{ $laporan->id }}" action="{{ route('laporan.produksi.delete', $laporan->id) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        <button type="button" class="btn-delete" onclick="confirmDelete({{ $laporan->id }})">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </button>
+                                    </form>
+                                    <a href="{{ route('laporan.produksi.edit', $laporan->id) }}" class="btn-edit">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     @endif
                 </tbody>
             </table>
 
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
 
             <!-- Total Harga Bibit -->
             <div class="total-harga">
-                <strong>Total Harga Induk: Rp {{ number_format($totalHargaBibit, 0, ',', '.') }}</strong>
+                <strong>Total Harga Bibit: Rp {{ number_format($totalHargaBibit, 0, ',', '.') }}</strong>
             </div>
 
         </div>
@@ -130,51 +129,50 @@
 
 
     <section class="info-perikanan">
-        <div class="info-kiri">
-            <div class="perikanan-header">
-                <div class="logo">
-                    <img src="{{ asset('images/kementrian_perikanan.png') }}" alt="Logo Ikan">
+            <div class="info-kiri">
+                <div class="perikanan-header">
+                    <div class="logo">
+                        <img src="{{ asset('images/kementrian_perikanan.png') }}" alt="Logo Ikan">
+                    </div>
+                    <h2>PERIKANAN</h2>
                 </div>
-                <h2>PERIKANAN</h2>
+                    <p><strong>DINAS PERIKANAN BANYUWANGI</strong></p>
+                    <p>UP: Balai Benih Ikan Genteng<br>Jl. KH. Agus Salim No.106, Lingkungan Cuking RW, Mojopanggung, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68424.</p>
+                    <p>Telephone:</p>
+                    <p>Email:</p>
+                <div class="social-icons">
+                    <a href="#" style="color: #c32aa3;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="color: #ff0000;"><i class="fab fa-youtube"></i></a>
+                    <a href="#" style="color: #1da1f2;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="color: #3b5998;"><i class="fab fa-facebook"></i></a>
+                </div>
             </div>
-            <p><strong>DINAS PERIKANAN BANYUWANGI</strong></p>
-            <p>UP: Balai Benih Ikan Genteng<br>Jl. KH. Agus Salim No.106, Lingkungan Cuking RW, Mojopanggung, Kec.
-                Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68424.</p>
-            <p>Telephone:</p>
-            <p>Email:</p>
-            <div class="social-icons">
-                <a href="#" style="color: #c32aa3;"><i class="fab fa-instagram"></i></a>
-                <a href="#" style="color: #ff0000;"><i class="fab fa-youtube"></i></a>
-                <a href="#" style="color: #1da1f2;"><i class="fab fa-twitter"></i></a>
-                <a href="#" style="color: #3b5998;"><i class="fab fa-facebook"></i></a>
+
+            <div class="info-kanan">
+                <h3>HARI KUNJUNGAN</h3>
+                <ul>
+                    <li>Senin: 07:00-17:00</li>
+                    <li>Selasa: 07:00-17:00</li>
+                    <li>Rabu: 07:00-17:00</li>
+                    <li>Kamis: 07:00-17:00</li>
+                    <li>Jumat: Tutup</li>
+                    <li>Sabtu: Tutup</li>
+                    <li>Minggu: 07:00-17:00</li>
+                </ul>
+            </div>
+        </section>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="closePopup()">&times;</span>
+                <h3>Pilih Laporan</h3>
+                <ul>
+                    <li><a href="#">Laporan Produksi</a></li>
+                    <li><a href="#">Laporan Penjualan</a></li>
+                    <li><a href="#">Laporan Induk</a></li>
+                </ul>
             </div>
         </div>
-
-        <div class="info-kanan">
-            <h3>HARI KUNJUNGAN</h3>
-            <ul>
-                <li>Senin: 07:00-17:00</li>
-                <li>Selasa: 07:00-17:00</li>
-                <li>Rabu: 07:00-17:00</li>
-                <li>Kamis: 07:00-17:00</li>
-                <li>Jumat: Tutup</li>
-                <li>Sabtu: Tutup</li>
-                <li>Minggu: 07:00-17:00</li>
-            </ul>
-        </div>
-    </section>
-
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <h3>Pilih Laporan</h3>
-            <ul>
-                <li><a href="#">Laporan Produksi</a></li>
-                <li><a href="#">Laporan Penjualan</a></li>
-                <li><a href="#">Laporan Induk</a></li>
-            </ul>
-        </div>
-    </div>
 
 
     </main>
@@ -206,7 +204,7 @@
             });
         }
 
-        @if (session()->has('success'))
+        @if(session()->has('success'))
             Swal.fire({
                 icon: 'success',
                 title: "{{ session('success') }}",
@@ -273,5 +271,4 @@
     </script>
 
 </body>
-
 </html>

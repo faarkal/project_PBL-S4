@@ -148,7 +148,7 @@
     <script>
         function toggleHamburgerMenu() {
             const menuContent = document.getElementById("hamburgerMenuContent");
-            
+
             if (menuContent.style.display === "block") {
                 menuContent.style.display = "none";
             } else {
@@ -158,7 +158,7 @@
 
         window.onclick = function(event) {
             const menuContent = document.getElementById("hamburgerMenuContent");
-            
+
             if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
                 menuContent.style.display = "none";
             }
@@ -174,18 +174,18 @@
             } else {
                 const allDropdowns = document.querySelectorAll('.dropdown-content');
                 allDropdowns.forEach(function(dropdown) {
-                    dropdown.style.display = "none"; 
+                    dropdown.style.display = "none";
                 });
-                menu.style.display = "block"; 
+                menu.style.display = "block";
             }
         }
 
         window.onclick = function(event) {
             const dropdowns = document.querySelectorAll('.dropdown-content');
-            
+
             dropdowns.forEach(function(dropdown) {
                 if (!event.target.closest('.dropbtn')) {
-                    dropdown.style.display = "none"; 
+                    dropdown.style.display = "none";
                 }
             });
         }

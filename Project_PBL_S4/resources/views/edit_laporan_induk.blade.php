@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data Induk</title>
+    <title>Edit Data Induk</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
@@ -21,14 +21,7 @@
 
     <nav>
         <ul>
-            <li>
-                <div class="hamburger-menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <a href="{{ route('home') }}">HOME</a>
-            </li>
+            <li><a href="{{ route('home') }}">HOME</a></li>
             <li><a href="#">PROFILE</a></li>
             <li class="dropdown">
                 <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">LAPORAN</a>
@@ -46,53 +39,51 @@
                     <a href="#">Hasil Laporan Induk</a>
                 </div>
             </li>
-
             <li><a href="/nota">NOTA</a></li>
         </ul>
     </nav>
 
     <main>
         <div class="form-container">
-            <h2>Tambah Data Induk Bibit Ikan</h2>
+            <h2>Edit Data Induk Bibit Ikan</h2>
 
-            <form action="{{ route('laporan.induk.store') }}" method="POST">
+            <form action="{{ route('laporan.induk.update', $laporanInduk->id) }}" method="POST">
                 @csrf
+                @method('PUT')
 
                 <div class="form-group">
                     <label for="nama_induk">Nama Induk</label>
-                    <input type="text" name="nama_induk" id="nama_induk" required>
+                    <input type="text" name="nama_induk" id="nama_induk" value="{{ $laporanInduk->nama_induk }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="jenis_kelamin">Jenis Kelamin</label>
                     <select name="jenis_kelamin" id="jenis_kelamin" required>
                         <option value="">Pilih</option>
-                        <option value="Jantan">Jantan</option>
-                        <option value="Betina">Betina</option>
+                        <option value="Jantan" {{ $laporanInduk->jenis_kelamin == 'Jantan' ? 'selected' : '' }}>Jantan</option>
+                        <option value="Betina" {{ $laporanInduk->jenis_kelamin == 'Betina' ? 'selected' : '' }}>Betina</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="asal_induk">Asal Induk</label>
-                    <input type="text" name="asal_induk" id="asal_induk" required>
+                    <input type="text" name="asal_induk" id="asal_induk" value="{{ $laporanInduk->asal_induk }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="jumlah">Jumlah</label>
-                    <input type="number" name="jumlah" id="jumlah" required>
+                    <input type="number" name="jumlah" id="jumlah" value="{{ $laporanInduk->jumlah }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="tanggal_masuk">Tanggal Masuk</label>
-                    <input type="date" name="tanggal_masuk" id="tanggal_masuk" required>
+                    <input type="date" name="tanggal_masuk" id="tanggal_masuk" value="{{ $laporanInduk->tanggal_masuk }}" required>
                 </div>
 
-                <button type="submit" class="btn-submit">Simpan</button>
+                <button type="submit" class="btn-submit">Perbarui</button>
                 <a href="{{ route('hasil.laporan.induk') }}" class="btn-cancel">Batal</a>
             </form>
         </div>
     </main>
-
-
 </body>
 </html>
