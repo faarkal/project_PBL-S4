@@ -148,8 +148,8 @@
     <script>
         function toggleHamburgerMenu() {
             const menuContent = document.getElementById("hamburgerMenuContent");
-            
-           
+
+
             if (menuContent.style.display === "block") {
                 menuContent.style.display = "none";
             } else {
@@ -157,10 +157,10 @@
             }
         }
 
-       
+
         window.onclick = function(event) {
             const menuContent = document.getElementById("hamburgerMenuContent");
-            
+
             if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
                 menuContent.style.display = "none";
             }
@@ -171,11 +171,11 @@
         function toggleDropdown(menuId) {
             const menu = document.getElementById(menuId);
 
-           
+
             if (menu.style.display === "block") {
                 menu.style.display = "none";
             } else {
-               
+
                 const allDropdowns = document.querySelectorAll('.dropdown-content');
                 allDropdowns.forEach(function(dropdown) {
                     dropdown.style.display = "none";
@@ -186,7 +186,7 @@
 
         window.onclick = function(event) {
             const dropdowns = document.querySelectorAll('.dropdown-content');
-            
+
             dropdowns.forEach(function(dropdown) {
                 if (!event.target.closest('.dropbtn')) {
                     dropdown.style.display = "none";
@@ -196,7 +196,7 @@
 
         document.querySelectorAll('.dropdown-content a').forEach(function(item) {
             item.addEventListener('click', function(event) {
-                event.stopPropagation(); 
+                event.stopPropagation();
             });
         });
     </script>

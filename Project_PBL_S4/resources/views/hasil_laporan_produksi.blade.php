@@ -44,7 +44,7 @@
                 <div id="hasilMenu" class="dropdown-content">
                     <a href="{{ route('hasil.laporan.produksi') }}">Hasil Laporan Produksi</a>
                     <a href="#">Hasil Laporan Penjualan</a>
-                    <a href="#">Hasil Laporan Induk</a>
+                    <a href="{{ route('hasil.laporan.induk') }}">Hasil Laporan Induk</a>
                 </div>
             </li>
             <li><a href="/nota">NOTA</a></li>
@@ -79,7 +79,7 @@
                         <th>Kematian Ikan (%)</th>
                         <th>Jumlah Bibit Akhir</th>
                         <th>Harga Bibit (Rp)</th>
-                        <th>Total Harga (Rp)</th> 
+                        <th>Total Harga (Rp)</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -91,14 +91,17 @@
                     @else
                         @foreach($laporanProduksi as $key => $laporan)
                             <tr>
-                                <td>{{ $key + 1 }}</td> 
-                                <td>{{ $laporan->jenis_bibit }}</td> 
-                                <td>{{ $laporan->bulan_lahir }}</td> 
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $laporan->jenis_bibit }}</td>
+                                <td>{{ $laporan->bulan_lahir }}</td>
                                 <td>{{ $laporan->jumlah_bibit }}</td>
+                                <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td>
+                                <td>{{ number_format($laporan->jumlah_bibit * $laporan->harga_bibit, 0, ',', '.') }}</td>
                                 <td>{{ round($laporan->kematian_ikan) }}%</td>
                                 <td>{{ number_format($laporan->jumlah_bibit_akhir, 0, ',', '.') }}</td>
                                 <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td> 
                                 <td>{{ number_format($laporan->total_harga, 0, ',', '.') }}</td>
+
                                 <td>
                                     <form id="delete-form-{{ $laporan->id }}" action="{{ route('laporan.produksi.delete', $laporan->id) }}" method="POST" style="display: inline;">
                                         @csrf
@@ -201,7 +204,7 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Ya, hapus!',
                 cancelButtonText: 'Batal',
-                background: '#fff', 
+                background: '#fff',
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('delete-form-' + id).submit();
@@ -217,7 +220,7 @@
                 timer: 3000,
                 position: 'top-end',
                 toast: true,
-                background: '#fff', 
+                background: '#fff',
             });
         @endif
     </script>
@@ -226,7 +229,7 @@
     <script>
         function toggleHamburgerMenu() {
             const menuContent = document.getElementById("hamburgerMenuContent");
-            
+
             if (menuContent.style.display === "block") {
                 menuContent.style.display = "none";
             } else {
@@ -236,7 +239,7 @@
 
         window.onclick = function(event) {
             const menuContent = document.getElementById("hamburgerMenuContent");
-            
+
             if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
                 menuContent.style.display = "none";
             }
@@ -252,18 +255,18 @@
             } else {
                 const allDropdowns = document.querySelectorAll('.dropdown-content');
                 allDropdowns.forEach(function(dropdown) {
-                    dropdown.style.display = "none"; 
+                    dropdown.style.display = "none";
                 });
-                menu.style.display = "block"; 
+                menu.style.display = "block";
             }
         }
 
         window.onclick = function(event) {
             const dropdowns = document.querySelectorAll('.dropdown-content');
-            
+
             dropdowns.forEach(function(dropdown) {
                 if (!event.target.closest('.dropbtn')) {
-                    dropdown.style.display = "none"; 
+                    dropdown.style.display = "none";
                 }
             });
         }
