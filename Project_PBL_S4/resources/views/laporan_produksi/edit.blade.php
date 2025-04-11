@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Produksi - Balai Usaha Perikanan Genteng</title>
+    <title>Edit Laporan Produksi - Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </head>
 <body>
     <header>
@@ -32,14 +31,7 @@
                 </div>
                 <a href="{{ route('home') }}">HOME</a>
             </li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn" onclick="toggleDropdown()">PROFILE</a>
-                <div id="dropdownMenu" class="dropdown-content">
-                    <a href="{{ route('laporan.produksi') }}">Biodata Kepala Dinas</a>
-                    <a href="#">Data Profile Dinas</a>
-                    <a href="#">Visi-Misi</a>
-                </div>
-            </li>
+            <li><a href="#">PROFILE</a></li>
             <li class="dropdown">
                 <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">LAPORAN</a>
                 <div id="laporanMenu" class="dropdown-content">
@@ -62,28 +54,45 @@
     </nav>
 
     <main>
-    <section class="main-content">
-            <div class="info-kiri-text">
-                <h2>Selamat Datang di Balai Usaha Perikanan Genteng</h2>
-                <br>
-                    <p>
-                        Balai Usaha Perikanan Genteng adalah unit pelayanan teknis di bawah Dinas Perikanan Kabupaten Banyuwangi.
-                        Kami berkomitmen untuk memberikan pelayanan terbaik dalam pengembangan usaha perikanan di wilayah Genteng dan sekitarnya.
-                    </p>
-                    <p>
-                        Melalui berbagai program dan kegiatan, kami berupaya meningkatkan produktivitas dan kesejahteraan para pelaku usaha perikanan.
-                    </p>
-            </div>
+        <div>
+            <h2>Edit Laporan Produksi Bibit Ikan</h2>
+            <form action="{{ route('laporan.produksi.update', $bibit->id) }}" method="POST">
+                @csrf
+                @method('PUT')
 
-            <div class="kepala-dinas">
-                <h2>KEPALA DINAS</h2>
-                    <div class="foto-container">
-                        <div class="foto-placeholder">FOTO</div>
-                    </div>
-                    <p>Nama Kepala Dinas<br>Balai Usaha Perikanan Genteng</p>
-            </div>
+                <!-- Jenis Bibit -->
+                <div class="form-group">
+                    <label for="jenis_bibit">Jenis Bibit Ikan:</label>
+                    <input type="text" id="jenis_bibit" name="jenis_bibit" value="{{ $bibit->jenis_bibit }}" readonly required>
+                </div>
 
-        </section>
+                <!-- Bulan Lahir -->
+                <div class="form-group">
+                    <label for="bulan_lahir">Bulan Lahir Bibit:</label>
+                    <input type="date" id="bulan_lahir" name="bulan_lahir" value="{{ $bibit->bulan_lahir }}" required>
+                </div>
+
+                <!-- Jumlah Bibit -->
+                <div class="form-group">
+                    <label for="jumlah_bibit">Jumlah Bibit:</label>
+                    <input type="number" id="jumlah_bibit" name="jumlah_bibit" value="{{ $bibit->jumlah_bibit }}" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="kematian_ikan">Kematian Ikan (%):</label>
+                    <input type="number" id="kematian_ikan" name="kematian_ikan" step="0.01" min="0" max="100" required>
+                </div>
+
+                <!-- Harga Bibit -->
+                <div class="form-group">
+                    <label for="harga_bibit">Harga Bibit (Rp):</label>
+                    <input type="number" id="harga_bibit" name="harga_bibit" value="{{ $bibit->harga_bibit }}" min="0" required>
+                </div>
+
+                <!-- Tombol Simpan -->
+                <button type="submit" class="btn-submit">Update Laporan</button>
+            </form>
+        </div>
     </main>
 
     <section class="info-perikanan">
@@ -127,7 +136,7 @@
             <ul>
                 <li><a href="#">Laporan Produksi</a></li>
                 <li><a href="#">Laporan Penjualan</a></li>
-                <li><a href="{{ route('hasil.laporan.induk') }}">Laporan Induk</a></li>
+                <li><a href="#">Laporan Induk</a></li>
             </ul>
         </div>
     </div>
@@ -163,37 +172,6 @@
     </script>
 
     <script>
-
-        document.querySelector('.dropbtn').addEventListener('click', function (event) {
-            event.preventDefault(); // Mencegah default link behavior
-            const dropdown = document.querySelector('.dropdown-content');
-
-            // Toggle tampilan dropdown
-            if (dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
-            } else {
-                dropdown.style.display = 'block';
-            }
-        });
-
-        // Tutup dropdown jika klik di luar
-        window.addEventListener('click', function (event) {
-            const dropdown = document.querySelector('.dropdown-content');
-
-            if (!event.target.matches('.dropbtn')) {
-                dropdown.style.display = 'none';
-            }
-        });
-    </script>
-
-    <script>
-        function toggleHamburgerMenu() {
-            const menuContent = document.getElementById("hamburgerMenuContent");
-
-            // Toggle tampilan menu tambahan
-            if (menuContent.style.display === "block") {
-                menuContent.style.display = "none";
-
         function toggleDropdown(menuId) {
             const menu = document.getElementById(menuId);
 
@@ -211,13 +189,6 @@
         }
 
         window.onclick = function(event) {
-
-            const menuContent = document.getElementById("hamburgerMenuContent");
-
-            if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
-                menuContent.style.display = "none";
-            }
-
             const dropdowns = document.querySelectorAll('.dropdown-content');
 
             dropdowns.forEach(function(dropdown) {
@@ -225,7 +196,6 @@
                     dropdown.style.display = "none";
                 }
             });
-
         }
 
         document.querySelectorAll('.dropdown-content a').forEach(function(item) {
@@ -233,6 +203,19 @@
                 event.stopPropagation();
             });
         });
+    </script>
+
+    <script>
+        @if(session()->has('success'))
+            Swal.fire({
+                icon: 'success',
+                title: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                position: 'top-end',
+                toast: true,
+            });
+        @endif
     </script>
 
 </body>

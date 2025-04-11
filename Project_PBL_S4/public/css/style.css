@@ -72,6 +72,7 @@ nav a:hover {
     padding: 20px;
     background-color: #ddd;
     border-radius: 8px;
+    margin-bottom: 0px;
 }
 
 .info-kiri-text {
@@ -211,7 +212,7 @@ footer p {
 }
 
 .popup {
-    display: none; /* Tersembunyi secara default */
+    display: none; 
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -219,15 +220,15 @@ footer p {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang transparan */
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .popup-content {
     background-color: #fefefe;
-    margin: 15% auto; /* Pusatkan popup */
+    margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Lebar popup */
+    width: 80%; 
 }
 
 .close {
@@ -250,14 +251,14 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    background-color: #007bff; /* Warna latar navbar */
-    align-items: center; /* Vertikal center */
+    background-color: #007bff; 
+    align-items: center; 
 }
 
 nav ul li {
     position: relative;
-    display: flex; /* Mengatur ikon dan teks dalam satu baris */
-    align-items: center; /* Vertikal center */
+    display: flex; 
+    align-items: center;
 }
 
 nav ul li a {
@@ -269,6 +270,29 @@ nav ul li a {
 
 nav ul li a:hover {
     background-color: #0056b3;
+}
+
+/* Style untuk dropdown */
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    top: 100%; 
+    left: 0; 
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); 
+    z-index: 1;
+    min-width: 150px; 
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block; 
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1; 
 }
 
 /* Style untuk hamburger menu */
@@ -283,16 +307,16 @@ nav ul li a:hover {
     width: 25px;
     height: 3px;
     margin: 5px 0;
-    background-color: black; /* Warna garis */
+    background-color: black; 
 }
 
 
 /* Style untuk menu tambahan yang muncul */
 .hamburger-menu-content {
-    display: none; /* Tersembunyi secara default */
+    display: none;
     position: absolute;
-    top: 50px; /* Posisi di bawah navbar */
-    left: 10px; /* Posisi relatif terhadap hamburger menu */
+    top: 50px; 
+    left: 10px; 
     background-color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     padding: 10px;
@@ -320,12 +344,12 @@ nav ul li a:hover {
 
 /* Style untuk dropdown */
 .dropdown-content {
-    display: none; /* Tersembunyi secara default */
+    display: none; 
     position: absolute;
-    top: 123%; /* Posisi tepat di bawah navbar */
-    left: 0; /* Mulai dari kiri elemen dropdown */
+    top: 123%; 
+    left: 0; 
     background-color: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Bayangan dropdown */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 1;
 }
 
@@ -333,21 +357,21 @@ nav ul li a:hover {
     color: black;
     padding: 10px 15px;
     text-decoration: none;
-    display: block; /* Tampilkan sebagai blok */
+    display: block; 
 }
 
 .dropdown-content a:active {
-    color: black; /* Warna teks saat diklik */
-    background-color: #ddd; /* Warna latar belakang saat diklik */
+    color: black; 
+    background-color: #ddd;
 }
 
 .dropdown-content a:hover {
-    background-color: #23d5f5; /* Warna saat hover pada item dropdown */
+    background-color: #23d5f5; 
 }
 
 /* Tampilkan dropdown saat hover */
 .dropdown:hover .dropdown-content {
-    display: block; /* Tampilkan menu dropdown */
+    display: block;
 }
 
 
@@ -413,17 +437,17 @@ nav ul li a:hover {
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%; /* Tinggi penuh layar */
-    font-family: Arial, sans-serif; /* Font default */
+    height: 100%; 
+    font-family: Arial, sans-serif; 
 }
 
 /* Style untuk form layar penuh */
 .full-screen-form {
     display: flex;
-    justify-content: center; /* Pusatkan secara horizontal */
-    align-items: center; /* Pusatkan secara vertikal */
-    height: 100%; /* Tinggi penuh layar */
-    background-color: #f8f9fa; /* Warna latar belakang */
+    justify-content: center; 
+    align-items: center;
+    height: 100%;
+    background-color: #f8f9fa; 
 }
 
 /* Container form */
@@ -431,9 +455,9 @@ body, html {
     background-color: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Bayangan di bawah form */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
     width: 100%;
-    max-width: 600px; /* Lebar maksimal form */
+    max-width: 600px; 
 }
 
 /* Judul form */
@@ -478,5 +502,174 @@ body, html {
 }
 
 .btn-submit:hover {
-    background-color: #218838; /* Warna tombol saat hover */
+    background-color: #218838;
+}
+
+form {
+    width: 100%;
+    max-width: 1300px; 
+    margin: 0 auto; 
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn-submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-submit:hover {
+    background-color: #45a049;
+}
+
+/*tabel*/
+main {
+    width: 100%;
+    padding: 20px; 
+    box-sizing: border-box;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 6px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.table-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.total-harga {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.table-top h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.link-add-data {
+    background-color: #51db56;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.link-add-data:hover {
+    background-color: #3cc243;
+}
+.table-search {
+    display: flex;
+    align-items: center;
+}
+
+.table-search input[type="text"] {
+    margin-left: 5px;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.btn-edit, .btn-delete {
+    padding: 6px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 5px;
+    color: white;
+}
+
+.btn-edit {
+    background-color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+}
+
+.btn-delete:hover {
+    background-color: #c42736;
+}
+
+.table-search form {
+    display: flex;
+    align-items: center;
+}
+
+.table-search input[type="text"] {
+    margin-left: 5px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.table-search button {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.swal2-popup {
+    font-size: 16px;
+    border-radius: 10px; 
 }
