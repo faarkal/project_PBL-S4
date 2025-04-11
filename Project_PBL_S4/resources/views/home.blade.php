@@ -32,7 +32,14 @@
                 </div>
                 <a href="{{ route('home') }}">HOME</a>
             </li>
-            <li><a href="#">PROFILE</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown()">PROFILE</a>
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="{{ route('laporan.produksi') }}">Biodata Kepala Dinas</a>
+                    <a href="#">Data Profile Dinas</a>
+                    <a href="#">Visi-Misi</a>
+                </div>
+            </li>
             <li class="dropdown">
                 <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">LAPORAN</a>
                 <div id="laporanMenu" class="dropdown-content">
@@ -156,6 +163,37 @@
     </script>
 
     <script>
+
+        document.querySelector('.dropbtn').addEventListener('click', function (event) {
+            event.preventDefault(); // Mencegah default link behavior
+            const dropdown = document.querySelector('.dropdown-content');
+
+            // Toggle tampilan dropdown
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                dropdown.style.display = 'block';
+            }
+        });
+
+        // Tutup dropdown jika klik di luar
+        window.addEventListener('click', function (event) {
+            const dropdown = document.querySelector('.dropdown-content');
+
+            if (!event.target.matches('.dropbtn')) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>
+
+    <script>
+        function toggleHamburgerMenu() {
+            const menuContent = document.getElementById("hamburgerMenuContent");
+
+            // Toggle tampilan menu tambahan
+            if (menuContent.style.display === "block") {
+                menuContent.style.display = "none";
+
         function toggleDropdown(menuId) {
             const menu = document.getElementById(menuId);
 
@@ -173,6 +211,13 @@
         }
 
         window.onclick = function(event) {
+
+            const menuContent = document.getElementById("hamburgerMenuContent");
+
+            if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
+                menuContent.style.display = "none";
+            }
+
             const dropdowns = document.querySelectorAll('.dropdown-content');
 
             dropdowns.forEach(function(dropdown) {
@@ -180,6 +225,7 @@
                     dropdown.style.display = "none";
                 }
             });
+
         }
 
         document.querySelectorAll('.dropdown-content a').forEach(function(item) {
