@@ -42,7 +42,7 @@ class HasilLaporanController extends Controller
        // Hitung total harga bibit (perubahan disini)
        $totalHargaBibit = $laporanProduksi->sum('total_harga');
 
-        return view('hasil_laporan_produksi', compact('laporanProduksi', 'keyword', 'totalHargaBibit', 'message'));
+        return view('laporan_produksi.hasil_laporan_produksi', compact('laporanProduksi', 'keyword', 'totalHargaBibit', 'message'));
     }
 
 }
