@@ -76,10 +76,11 @@
                         <th>Jenis Bibit</th>
                         <th>Bulan Lahir</th>
                         <th>Jumlah Bibit</th>
+                        <th>Harga Perekor</th>
+                        <th>Total Harga</th>
                         <th>Kematian Ikan (%)</th>
                         <th>Jumlah Bibit Akhir</th>
-                        <th>Harga Bibit (Rp)</th>
-                        <th>Total Harga (Rp)</th>
+                        <th>Total Harga Akhir</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -99,7 +100,6 @@
                                 <td>{{ number_format($laporan->jumlah_bibit * $laporan->harga_bibit, 0, ',', '.') }}</td>
                                 <td>{{ round($laporan->kematian_ikan) }}%</td>
                                 <td>{{ number_format($laporan->jumlah_bibit_akhir, 0, ',', '.') }}</td>
-                                <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td> 
                                 <td>{{ number_format($laporan->total_harga, 0, ',', '.') }}</td>
 
                                 <td>
