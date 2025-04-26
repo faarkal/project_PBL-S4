@@ -35,7 +35,7 @@
             <li class="dropdown">
                 <a href="#" class="dropbtn" onclick="toggleDropdown()">PROFILE</a>
                 <div id="dropdownMenu" class="dropdown-content">
-                    <a href="{{ route('laporan.produksi') }}">Biodata Kepala Dinas</a>
+                    <a href="#">Biodata Kepala Dinas</a>
                     <a href="#">Data Profile Dinas</a>
                     <a href="#">Visi-Misi</a>
                 </div>

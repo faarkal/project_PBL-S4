@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bibit extends Model
 {
-    use HasFactory; // Menyertakan trait HasFactory
+    use HasFactory; 
 
-    protected $table = 'bibits'; // Nama tabel
+    protected $table = 'bibits'; 
 
     protected $fillable = [
         'jenis_bibit',
@@ -17,7 +17,7 @@ class Bibit extends Model
         'jumlah_bibit',
         'kematian_ikan',
         'harga_bibit',
-    ]; // Kolom yang dapat diisi secara massal
+    ];
 
-    public $timestamps = true; // Mengaktifkan timestamps
+    public $timestamps = true; 
 }
