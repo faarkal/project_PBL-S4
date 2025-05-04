@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Data Induk</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
+
 <body>
     <header>
         <div class="header-content">
@@ -60,7 +62,13 @@
 
                 <div class="form-group">
                     <label for="nama_induk">Nama Induk</label>
-                    <input type="text" name="nama_induk" id="nama_induk" required>
+                    <select name="nama_induk" id="nama_induk" required>
+                        <option value="">Pilih Nama Induk</option>
+                        <option value="TOMBRO">TOMBRO</option>
+                        <option value="NILA GIFT">NILA GIFT</option>
+                        <option value="NILA MERAH">NILA MERAH</option>
+                        <option value="KOI">KOI</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -74,7 +82,11 @@
 
                 <div class="form-group">
                     <label for="asal_induk">Asal Induk</label>
-                    <input type="text" name="asal_induk" id="asal_induk" required>
+                    <select name="asal_induk" id="asal_induk" required>
+                        <option value="">Asal Induk</option>
+                        <option value="Dinas">Dinas</option>
+                        <option value="Balai">Balai</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -95,4 +107,5 @@
 
 
 </body>
+
 </html>
