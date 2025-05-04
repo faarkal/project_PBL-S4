@@ -43,6 +43,8 @@ Route::get('/laporan-induk/{id}/edit', [LaporanIndukController::class, 'edit'])-
 Route::put('/laporan-induk/{id}', [LaporanIndukController::class, 'update'])->name('laporan.induk.update');
 Route::delete('/laporan-induk/{id}', [LaporanIndukController::class, 'destroy'])->name('laporan.induk.delete');
 
+Route::get('/laporan-produksi/create', [LaporanProduksiController::class, 'create'])->name('laporan.produksi.create');
+Route::post('/laporan-produksi/store', [LaporanProduksiController::class, 'store'])->name('laporan.produksi.store');
+
 Route::get('/jenis-ikan/create', [JenisIkanController::class, 'create'])->name('jenis-ikan.create');
 Route::post('/jenis-ikan', [JenisIkanController::class, 'store'])->name('jenis-ikan.store');
-Route::get('/jenis-ikan', [JenisIkanController::class, 'index'])->name('jenis-ikan.index');

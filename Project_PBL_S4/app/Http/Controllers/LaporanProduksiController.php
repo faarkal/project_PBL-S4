@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Bibit;
 use App\Models\Laporan;
+use App\Models\JenisIkan;
 
 class LaporanProduksiController extends Controller
 {
@@ -72,5 +73,9 @@ class LaporanProduksiController extends Controller
         return redirect()->route('hasil.laporan.produksi');
     }
     
-
+    public function create()
+    {
+        $jenisikans = \App\Models\JenisIkan::all();
+        return view('laporan_produksi.create', compact('jenisikans'));
+    }
 }

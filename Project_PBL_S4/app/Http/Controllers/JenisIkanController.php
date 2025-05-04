@@ -10,7 +10,7 @@ class JenisIkanController extends Controller
     // Method untuk menampilkan form tambah ikan
     public function create()
     {
-        return view('jenisikan.create');
+        return view('jenis-ikan.create');
     }
 
     // Method untuk menyimpan data ikan ke database

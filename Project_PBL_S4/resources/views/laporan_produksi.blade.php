@@ -69,9 +69,17 @@
             <h2>Laporan Produksi Bibit Ikan</h2>
             <form action="{{ route('laporan.produksi.store') }}" method="POST">
                 @csrf
-                <div class="form-group">
-                    <label for="jenis_bibit">Jenis Bibit Ikan:</label>
-                    <input type="text" id="jenis_bibit" name="jenis_bibit" required>
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label for="jenis_bibit" style="display:block; margin-bottom:6px;">Jenis Bibit Ikan:</label>
+                    <select name="jenis_bibit" id="jenis_bibit" required
+                        style="width:1260px; padding:10px; font-size:15px;">
+                        <option value="">-- Pilih Jenis Ikan --</option>
+                        <option value="Nila Gift">Nila Gift</option>
+                        <option value="Nila Hitam">Nila Hitam</option>
+                        <option value="Gurame">Gurame</option>
+                        <option value="Tombro">Tombro</option>
+                        <option value="Koi">Koi</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
