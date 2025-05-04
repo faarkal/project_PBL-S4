@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+        <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="#"><i class=""></i> Tambahkan Ikan</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
     <header>
         <div class="header-content">
             <div class="logo">
@@ -23,7 +33,7 @@
     <nav>
         <ul>
             <li>
-                <div class="hamburger-menu">
+                <div class="hamburger-menu" onclick="openSidebar()">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -196,6 +206,66 @@
             });
         });
     </script>
+
+    <script>
+        // Fungsi untuk membuka sidebar
+        function openSidebar() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        // Fungsi untuk menutup sidebar
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("overlay").style.display = "none";
+        }
+
+        // Tutup sidebar jika mengklik di luar sidebar
+        window.onclick = function(event) {
+            const sidebar = document.getElementById("mySidebar");
+            const overlay = document.getElementById("overlay");
+            
+            if (event.target === overlay) {
+                closeSidebar();
+            }
+            
+            // Kode untuk dropdown menu yang sudah ada
+            const menuContent = document.getElementById("hamburgerMenuContent");
+            if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
+                if (menuContent) menuContent.style.display = "none";
+            }
+            
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            dropdowns.forEach(function(dropdown) {
+                if (!event.target.closest('.dropbtn')) {
+                    dropdown.style.display = "none"; 
+                }
+            });
+        }
+
+        // Fungsi untuk toggle dropdown (tetap sama)
+        function toggleDropdown(menuId) {
+            const menu = document.getElementById(menuId);
+
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                const allDropdowns = document.querySelectorAll('.dropdown-content');
+                allDropdowns.forEach(function(dropdown) {
+                    dropdown.style.display = "none"; 
+                });
+                menu.style.display = "block"; 
+            }
+        }
+
+        // Mencegah event bubbling pada dropdown items
+        document.querySelectorAll('.dropdown-content a').forEach(function(item) {
+            item.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+        });
+    </script>
+
 
 </body>
 </html>

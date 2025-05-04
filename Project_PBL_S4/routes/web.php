@@ -7,6 +7,8 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\HasilLaporanController;
 use App\Http\Controllers\NotaController;
 use App\Http\Controllers\LaporanIndukController;
+use App\Http\Controllers\JenisIkanController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -23,15 +25,11 @@ Route::post('/laporan-produksi/store', [LaporanProduksiController::class, 'store
 
 
 Route::get('/laporan-penjualan', [LaporanController::class, 'penjualan'])->name('laporan.penjualan');
-
 Route::get('/hasil-laporan-produksi', [HasilLaporanController::class, 'index'])->name('hasil.laporan.produksi');
 
 
-// Route untuk menampilkan form edit
 Route::get('/laporan-produksi/edit/{id}', [LaporanProduksiController::class, 'edit'])->name('laporan.produksi.edit');
-// Route untuk mengupdate data
 Route::put('/laporan-produksi/update/{id}', [LaporanProduksiController::class, 'update'])->name('laporan.produksi.update');
-// Route untuk menghapus data
 Route::post('/laporan-produksi/delete/{id}', [LaporanProduksiController::class, 'destroy'])->name('laporan.produksi.delete');
 
 Route::get('/nota', [NotaController::class, 'index'])->name('nota.index');
@@ -43,3 +41,6 @@ Route::post('/laporan-induk', [LaporanIndukController::class, 'store'])->name('l
 Route::get('/laporan-induk/{id}/edit', [LaporanIndukController::class, 'edit'])->name('laporan.induk.edit');
 Route::put('/laporan-induk/{id}', [LaporanIndukController::class, 'update'])->name('laporan.induk.update');
 Route::delete('/laporan-induk/{id}', [LaporanIndukController::class, 'destroy'])->name('laporan.induk.delete');
+
+Route::get('/jenis-ikan/create', [JenisIkanController::class, 'create'])->name('jenis-ikan.create');
+Route::post('/jenis-ikan', [JenisIkanController::class, 'store'])->name('jenis-ikan.store');

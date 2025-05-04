@@ -6,8 +6,19 @@
     <title>Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
 </head>
 <body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+        <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="{{ route('jenis-ikan.create') }}"><i class="fa fa-plus"></i> Tambahkan Ikan</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
     <header>
         <div class="header-content">
             <div class="logo">
@@ -23,7 +34,7 @@
     <nav>
         <ul>
             <li>
-                <div class="hamburger-menu">
+                <div class="hamburger-menu" onclick="openSidebar()">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -34,26 +45,25 @@
                 <a href="#">PROFILE</a>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">LAPORAN</a>
+                <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">PENGELOLAAN</a>
                 <div id="laporanMenu" class="dropdown-content">
-                    <a href="{{ route('laporan.produksi') }}">Laporan Produksi</a>
-                    <a href="#">Laporan Penjualan</a>
-                    <a href="#">Laporan Induk</a>
+                    <a href="{{ route('laporan.produksi') }}">Pengelolaan Produksi</a>
+                    <a href="#">Pengelolaan Penjualan</a>
+                    <a href="#">Pengelolaan Induk</a>
                 </div>
             </li>
             <li class="dropdown">
                 <a href="#" class="dropbtn" onclick="toggleDropdown('hasilMenu')">HASIL</a>
                 <div id="hasilMenu" class="dropdown-content">
-                    <a href="{{ route('hasil.laporan.produksi') }}">Hasil Laporan Produksi</a>
-                    <a href="#">Hasil Laporan Penjualan</a>
-                    <a href="#">Hasil Laporan Induk</a>
+                    <a href="{{ route('hasil.laporan.produksi') }}">Hasil Pengelolaan Produksi</a>
+                    <a href="#">Hasil Pengelolaan Penjualan</a>
+                    <a href="#">Hasil Pengelolaan Induk</a>
                 </div>
             </li>
-
-            <li><a href="#">NOTA</a></li>
+            <li><a href="">LAPORAN</a></li>
+            <li><a href="/nota">NOTA</a></li>
         </ul>
     </nav>
-
 
     <main>
         <section class="main-content">
@@ -72,7 +82,7 @@
             <div class="kepala-dinas">
                 <h2>KEPALA DINAS</h2>
                     <div class="foto-container">
-                        <div class="foto-placeholder">FOTO</div>
+                        <img src="{{ asset('images/balai.jpg') }}" alt="Foto Kepala Dinas">
                     </div>
                     <p>Nama Menteri<br>Menteri Kelautan dan Perikanan</p>
             </div>
@@ -124,6 +134,7 @@
                 </ul>
             </div>
         </div>
+        <br>
     <footer>
         <p style="display: flex; justify-content: center; align-items: center; font-size: 0.8em;">
             Copyright © 2025 Perikanan Kab. Banyuwangi - All rights reserved. | Create by PBL kelompok1.
@@ -132,27 +143,44 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
     <script>
-        function toggleHamburgerMenu() {
-            const menuContent = document.getElementById("hamburgerMenuContent");
-            
-            if (menuContent.style.display === "block") {
-                menuContent.style.display = "none";
-            } else {
-                menuContent.style.display = "block";
-            }
+        // Fungsi untuk membuka sidebar
+        function openSidebar() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("overlay").style.display = "block";
         }
 
+        // Fungsi untuk menutup sidebar
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("overlay").style.display = "none";
+        }
+
+        // Tutup sidebar jika mengklik di luar sidebar
         window.onclick = function(event) {
-            const menuContent = document.getElementById("hamburgerMenuContent");
+            const sidebar = document.getElementById("mySidebar");
+            const overlay = document.getElementById("overlay");
             
-            if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
-                menuContent.style.display = "none";
+            if (event.target === overlay) {
+                closeSidebar();
             }
+            
+            // Kode untuk dropdown menu yang sudah ada
+            const menuContent = document.getElementById("hamburgerMenuContent");
+            if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
+                if (menuContent) menuContent.style.display = "none";
+            }
+            
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            dropdowns.forEach(function(dropdown) {
+                if (!event.target.closest('.dropbtn')) {
+                    dropdown.style.display = "none"; 
+                }
+            });
         }
-    </script>
 
-    <script>
+        // Fungsi untuk toggle dropdown (tetap sama)
         function toggleDropdown(menuId) {
             const menu = document.getElementById(menuId);
 
@@ -167,22 +195,12 @@
             }
         }
 
-        window.onclick = function(event) {
-            const dropdowns = document.querySelectorAll('.dropdown-content');
-            
-            dropdowns.forEach(function(dropdown) {
-                if (!event.target.closest('.dropbtn')) {
-                    dropdown.style.display = "none"; 
-                }
-            });
-        }
-
+        // Mencegah event bubbling pada dropdown items
         document.querySelectorAll('.dropdown-content a').forEach(function(item) {
             item.addEventListener('click', function(event) {
                 event.stopPropagation();
             });
         });
     </script>
-
 </body>
 </html>

@@ -90,21 +90,18 @@ nav a:hover {
 }
 
 .foto-container {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
+    width: 200px;
+    height: 250px;
     margin: 0 auto;
-    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.foto-placeholder {
+.foto-container img {
     width: 100%;
-    height: 150px;
-    background-color: #eee;
-    margin-bottom: 10px;
-    text-align: center;
-    line-height: 150px;
-    font-style: italic;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Info Perikanan */
@@ -672,4 +669,69 @@ main {
 .swal2-popup {
     font-size: 16px;
     border-radius: 10px; 
+}
+
+
+/* sidebar */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: #007BFF;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid #0056b3;
+}
+
+.sidebar a:hover {
+    background-color: #0056b3;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    border: none;
+}
+
+.hamburger-menu {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: black;
+}
+
+/* Overlay saat sidebar terbuka */
+.overlay {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
 }
