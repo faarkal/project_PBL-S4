@@ -25,6 +25,7 @@ Route::post('/laporan-produksi/store', [LaporanProduksiController::class, 'store
 
 
 Route::get('/laporan-penjualan', [LaporanController::class, 'penjualan'])->name('laporan.penjualan');
+
 Route::get('/hasil-laporan-produksi', [HasilLaporanController::class, 'index'])->name('hasil.laporan.produksi');
 
 
@@ -44,3 +45,4 @@ Route::delete('/laporan-induk/{id}', [LaporanIndukController::class, 'destroy'])
 
 Route::get('/jenis-ikan/create', [JenisIkanController::class, 'create'])->name('jenis-ikan.create');
 Route::post('/jenis-ikan', [JenisIkanController::class, 'store'])->name('jenis-ikan.store');
+Route::get('/jenis-ikan', [JenisIkanController::class, 'index'])->name('jenis-ikan.index');

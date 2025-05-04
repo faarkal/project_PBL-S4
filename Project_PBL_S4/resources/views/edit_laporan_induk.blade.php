@@ -53,7 +53,13 @@
 
                 <div class="form-group">
                     <label for="nama_induk">Nama Induk</label>
-                    <input type="text" name="nama_induk" id="nama_induk" value="{{ $laporanInduk->nama_induk }}" required>
+                    <select name="nama_induk" id="nama_induk" required>
+                        <option value="">Pilih Nama Induk</option>
+                        <option value="TOMBRO" {{ $laporanInduk->nama_induk == 'TOMBRO' ? 'selected' : '' }}>TOMBRO</option>
+                        <option value="NILA GIFT" {{ $laporanInduk->nama_induk == 'NILA GIFT' ? 'selected' : '' }}>NILA GIFT</option>
+                        <option value="NILA MERAH" {{ $laporanInduk->nama_induk == 'NILA MERAH' ? 'selected' : '' }}>NILA MERAH</option>
+                        <option value="KOI" {{ $laporanInduk->nama_induk == 'KOI' ? 'selected' : '' }}>KOI</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -67,7 +73,11 @@
 
                 <div class="form-group">
                     <label for="asal_induk">Asal Induk</label>
-                    <input type="text" name="asal_induk" id="asal_induk" value="{{ $laporanInduk->asal_induk }}" required>
+                    <select name="asal_induk" id="asal_induk" required>
+                        <option value="">Asal Induk</option>
+                        <option value="Dinas" {{ $laporanInduk->asal_induk == 'Dinas' ? 'selected' : '' }}>Dinas</option>
+                        <option value="Balai" {{ $laporanInduk->asal_induk == 'Balai' ? 'selected' : '' }}>Balai</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
