@@ -5,7 +5,6 @@ use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\LaporanProduksiController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\HasilLaporanController;
-use App\Http\Controllers\NotaController;
 use App\Http\Controllers\LaporanIndukController;
 use App\Http\Controllers\JenisIkanController;
 
@@ -33,8 +32,6 @@ Route::get('/laporan-produksi/edit/{id}', [LaporanProduksiController::class, 'ed
 Route::put('/laporan-produksi/update/{id}', [LaporanProduksiController::class, 'update'])->name('laporan.produksi.update');
 Route::post('/laporan-produksi/delete/{id}', [LaporanProduksiController::class, 'destroy'])->name('laporan.produksi.delete');
 
-Route::get('/nota', [NotaController::class, 'index'])->name('nota.index');
-Route::post('/nota/upload', [NotaController::class, 'upload'])->name('nota.upload');
 
 Route::get('/laporan-induk', [LaporanIndukController::class, 'index'])->name('hasil.laporan.induk');
 Route::get('/laporan-induk/create', [LaporanIndukController::class, 'create'])->name('laporan.induk');

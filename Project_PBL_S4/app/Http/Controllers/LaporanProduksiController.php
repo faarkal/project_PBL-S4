@@ -75,7 +75,7 @@ class LaporanProduksiController extends Controller
     
     public function create()
     {
-        $jenisikans = \App\Models\JenisIkan::all();
-        return view('laporan_produksi.create', compact('jenisikans'));
+        $jenisikans = JenisIkan::all();
+        return view('laporan.produksi.create', compact('jenisikans'));
     }
 }

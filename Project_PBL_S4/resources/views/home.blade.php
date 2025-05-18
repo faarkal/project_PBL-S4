@@ -60,8 +60,8 @@
                     <a href="#">Hasil Pengelolaan Induk</a>
                 </div>
             </li>
-            <li><a href="">LAPORAN</a></li>
-            <li><a href="/nota">NOTA</a></li>
+            <li><a href="">PELAPORAN</a></li>
+            
         </ul>
     </nav>
 
