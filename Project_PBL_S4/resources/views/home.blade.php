@@ -60,7 +60,7 @@
                     <a href="#">Hasil Pengelolaan Induk</a>
                 </div>
             </li>
-            <li><a href="">PELAPORAN</a></li>
+            <li><a href="/pelaporan">PELAPORAN</a></li>
             
         </ul>
     </nav>
@@ -84,7 +84,7 @@
                     <div class="foto-container">
                         <img src="{{ asset('images/balai.jpg') }}" alt="Foto Kepala Dinas">
                     </div>
-                    <p>Nama Menteri<br>Menteri Kelautan dan Perikanan</p>
+                    <p>PBL kel1<br>Menteri Kelautan dan Perikanan</p>
             </div>
         </section>
     </main>

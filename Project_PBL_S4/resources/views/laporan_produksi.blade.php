@@ -60,13 +60,13 @@
                     <a href="#">Hasil Pengelolaan Induk</a>
                 </div>
             </li>
-            <li><a href="/nota">NOTA</a></li>
+            <li><a href="">PELAPORAN</a></li>
         </ul>
     </nav>
 
     <main>
         <div>
-            <h2>Laporan Produksi Bibit Ikan</h2>
+            <h2>Pengelolaan Produksi Bibit Ikan</h2>
             <form action="{{ route('laporan.produksi.store') }}" method="POST">
                 @csrf
                 <div class="form-group" style="margin-bottom:20px;">

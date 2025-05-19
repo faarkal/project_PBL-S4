@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hasil Laporan Produksi - Balai Usaha Perikanan Genteng</title>
+    <title>Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
 </head>
 <body>
-<!-- Sidebar -->
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
         <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
-        <a href="#"><i class=""></i> Tambahkan Ikan</a>
+        <a href="{{ route('jenis-ikan.create') }}"><i class="fa fa-plus"></i> Tambahkan Ikan</a>
         <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
@@ -41,7 +41,9 @@
                 </div>
                 <a href="{{ route('home') }}">HOME</a>
             </li>
-            <li><a href="#">PROFILE</a></li>
+            <li>
+                <a href="#">PROFILE</a>
+            </li>
             <li class="dropdown">
                 <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">PENGELOLAAN</a>
                 <div id="laporanMenu" class="dropdown-content">
@@ -59,95 +61,13 @@
                 </div>
             </li>
             <li><a href="">PELAPORAN</a></li>
+            
         </ul>
     </nav>
 
-    <main>
-        <div>
-            <h2>Hasil Pengelolaan Produksi Bibit Ikan</h2>
-
-            <div class="table-top">
-                <div>
-                    <a href="{{ route('laporan.produksi') }}" class="link-add-data">Tambah Data</a>
-                </div>
-                <div class="table-search">
-                    Search:
-                    <form action="{{ route('hasil.laporan.produksi') }}" method="GET">
-                        <input type="text" name="search" placeholder="Cari..." value="{{ request('search') }}">
-                        <button type="submit">Cari</button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Tabel untuk menampilkan hasil -->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Jenis Bibit</th>
-                        <th>Bulan Lahir</th>
-                        <th>Jumlah Bibit</th>
-                        <th>Harga Perekor</th>
-                        <th>Total Harga</th>
-                        <th>Kematian Ikan (%)</th>
-                        <th>Jumlah Bibit Akhir</th>
-                        <th>Total Harga Akhir</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if(isset($message))
-                        <tr>
-                            <td colspan="8" class="text-center">{{ $message }}</td>
-                        </tr>
-                    @else
-                        @foreach($laporanProduksi as $key => $laporan)
-                            <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $laporan->jenis_bibit }}</td>
-                                <td>{{ $laporan->bulan_lahir }}</td>
-                                <td>{{ $laporan->jumlah_bibit }}</td>
-                                <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td>
-                                <td>{{ number_format($laporan->jumlah_bibit * $laporan->harga_bibit, 0, ',', '.') }}</td>
-                                <td>{{ round($laporan->kematian_ikan) }}%</td>
-                                <td>{{ number_format($laporan->jumlah_bibit_akhir, 0, ',', '.') }}</td>
-                                <td>{{ number_format($laporan->total_harga, 0, ',', '.') }}</td>
-
-                                <td>
-                                    <form id="delete-form-{{ $laporan->id }}" action="{{ route('laporan.produksi.delete', $laporan->id) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        <button type="button" class="btn-delete" onclick="confirmDelete({{ $laporan->id }})">
-                                            <i class="fas fa-trash"></i> Delete
-                                        </button>
-                                    </form>
-                                    <a href="{{ route('laporan.produksi.edit', $laporan->id) }}" class="btn-edit">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
-                </tbody>
-            </table>
-            
-
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
 
 
-            <!-- Total Harga Bibit -->
-            <div class="total-harga">
-                <strong>Total Harga Bibit: Rp {{ number_format($totalHargaBibit, 0, ',', '.') }}</strong>
-            </div>
-
-        </div>
-    </main>
-
-
-    <section class="info-perikanan">
+        <section class="info-perikanan">
             <div class="info-kiri">
                 <div class="perikanan-header">
                     <div class="logo">
@@ -192,10 +112,7 @@
                 </ul>
             </div>
         </div>
-
-
-    </main>
-    <br>
+        <br>
     <footer>
         <p style="display: flex; justify-content: center; align-items: center; font-size: 0.8em;">
             Copyright © 2025 Perikanan Kab. Banyuwangi - All rights reserved. | Create by PBL kelompok1.
@@ -204,90 +121,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
-        function confirmDelete(id) {
-            Swal.fire({
-                title: 'Apakah Anda yakin ingin menghapus data ini?',
-                text: "Data yang dihapus tidak dapat dikembalikan!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Batal',
-                background: '#fff',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('delete-form-' + id).submit();
-                }
-            });
-        }
-
-        @if(session()->has('success'))
-            Swal.fire({
-                icon: 'success',
-                title: "{{ session('success') }}",
-                showConfirmButton: false,
-                timer: 3000,
-                position: 'top-end',
-                toast: true,
-                background: '#fff',
-            });
-        @endif
-    </script>
-
-
-    <script>
-        function toggleHamburgerMenu() {
-            const menuContent = document.getElementById("hamburgerMenuContent");
-
-            if (menuContent.style.display === "block") {
-                menuContent.style.display = "none";
-            } else {
-                menuContent.style.display = "block";
-            }
-        }
-
-        window.onclick = function(event) {
-            const menuContent = document.getElementById("hamburgerMenuContent");
-
-            if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
-                menuContent.style.display = "none";
-            }
-        }
-    </script>
-
-    <script>
-        function toggleDropdown(menuId) {
-            const menu = document.getElementById(menuId);
-
-            if (menu.style.display === "block") {
-                menu.style.display = "none";
-            } else {
-                const allDropdowns = document.querySelectorAll('.dropdown-content');
-                allDropdowns.forEach(function(dropdown) {
-                    dropdown.style.display = "none";
-                });
-                menu.style.display = "block";
-            }
-        }
-
-        window.onclick = function(event) {
-            const dropdowns = document.querySelectorAll('.dropdown-content');
-
-            dropdowns.forEach(function(dropdown) {
-                if (!event.target.closest('.dropbtn')) {
-                    dropdown.style.display = "none";
-                }
-            });
-        }
-
-        document.querySelectorAll('.dropdown-content a').forEach(function(item) {
-            item.addEventListener('click', function(event) {
-                event.stopPropagation();
-            });
-        });
-    </script>
 
     <script>
         // Fungsi untuk membuka sidebar
@@ -347,7 +180,5 @@
             });
         });
     </script>
-
-
 </body>
 </html>
