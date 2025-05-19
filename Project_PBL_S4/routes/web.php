@@ -13,12 +13,15 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-
 Route::get('/visi-misi', [VisiMisiController::class, 'index']);
 
 Route::get('/laporan-produksi', function () {
     return view('laporan_produksi');
 })->name('laporan.produksi');
+
+Route::get('/pelaporan', function () {
+    return view('pelaporan'); 
+});
 
 Route::post('/laporan-produksi/store', [LaporanProduksiController::class, 'store'])->name('laporan.produksi.store');
 

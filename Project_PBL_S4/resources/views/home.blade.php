@@ -60,6 +60,7 @@
                     <a href="#">Hasil Pengelolaan Induk</a>
                 </div>
             </li>
+            <li><a href="">PEMESANAN</a></li>
             <li><a href="/pelaporan">PELAPORAN</a></li>
             
         </ul>
