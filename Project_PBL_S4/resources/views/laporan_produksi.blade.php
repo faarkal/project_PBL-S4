@@ -48,7 +48,6 @@
                 <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">PENGELOLAAN</a>
                 <div id="laporanMenu" class="dropdown-content">
                     <a href="{{ route('laporan.produksi') }}">Pengelolaan Produksi</a>
-                    <a href="#">Pengelolaan Penjualan</a>
                     <a href="#">Pengelolaan Induk</a>
                 </div>
             </li>
@@ -94,13 +93,18 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="restocking">Restocking:</label>
+                    <input type="number" id="restocking" name="restocking" min="0" required>
+                </div>
+
+                <div class="form-group">
                     <label for="kematian_ikan">Kematian Ikan (%):</label>
                     <input type="number" name="kematian_ikan" step="0.01" min="0" max="100" required>
-                    </div>
+                </div>
 
                 <div class="form-group">
                     <label for="harga_bibit">Harga Bibit (Rp):</label>
-                    <input type="number" id="harga_bibit" name="harga_bibit" min="0" required>
+                    <input type="number" id="harga_bibit" name="harga_bibit" min="0" step="1" required>
                 </div>
 
                 <button type="submit" class="btn-submit">
