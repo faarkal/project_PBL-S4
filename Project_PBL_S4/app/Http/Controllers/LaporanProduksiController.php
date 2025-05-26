@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bibit;
+use Carbon\Carbon;
 
 class LaporanProduksiController extends Controller
 {
@@ -17,10 +18,13 @@ class LaporanProduksiController extends Controller
             'harga_bibit' => 'required|numeric|min:0',
         ]);
 
+        $date = Carbon::parse($request->bulan_lahir . '-01');
+
+
         // Simpan data ke database
         $bibit = new Bibit();
         $bibit->jenis_bibit = $request->jenis_bibit;
-        $bibit->bulan_lahir = $request->bulan_lahir;
+        $bibit->bulan_lahir = $date;
         $bibit->jumlah_bibit = $request->jumlah_bibit;
         $bibit->harga_bibit = $request->harga_bibit;
         $bibit->save();

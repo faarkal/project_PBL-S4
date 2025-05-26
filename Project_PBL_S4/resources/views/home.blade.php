@@ -6,8 +6,19 @@
     <title>Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+        <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="{{ route('jenis-ikan.create') }}"><i class="fa fa-plus"></i> Tambahkan Ikan</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
     <header>
         <div class="header-content">
             <div class="logo">
@@ -23,28 +34,41 @@
     <nav>
         <ul>
             <li>
-                <div class="hamburger-menu">
+                <div class="hamburger-menu" onclick="openSidebar()">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
-                <a href="#">HOME</a>
+                <a href="{{ route('home') }}">HOME</a>
             </li>
-            <li><a href="#">PROFILE</a></li>
             <li class="dropdown">
-                <a href="#" class="dropbtn" onclick="toggleDropdown()">LAPORAN</a>
-                <div id="dropdownMenu" class="dropdown-content">
-                    <a href="{{ route('laporan.produksi') }}">Laporan Produksi</a>
-                    <a href="#">Laporan Penjualan</a>
-                    <a href="#">Laporan Induk</a>
+                <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">PROFILE</a>
+                <div id="laporanMenu" class="dropdown-content">
+                    <a href="{{ route('biodata-kepala-dinas') }}">Biodata Kepala Dinas</a>
+                    <a href="{{ route('data-profile-dinas') }}">Data Profile Dinas</a>
+                    <a href="{{ route('visi-misi') }}">Visi-Misi</a>
                 </div>
             </li>
-            <li><a href="#">HASIL</a></li>
-            <li><a href="#">NOTA</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">PENGELOLAAN</a>
+                <div id="laporanMenu" class="dropdown-content">
+                    <a href="{{ route('laporan_produksi') }}">Pengelolaan Produksi</a>
+                    <a href="{{ route('laporan-penjualan') }}">Pengelolaan Penjualan</a>
+                    <a href="#">Pengelolaan Induk</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown('hasilMenu')">HASIL</a>
+                <div id="hasilMenu" class="dropdown-content">
+                    <a href="">Hasil Pengelolaan Produksi</a>
+                    <a href="#">Hasil Pengelolaan Penjualan</a>
+                    <a href="#">Hasil Pengelolaan Induk</a>
+                </div>
+            </li>
+            <li><a href="">LAPORAN</a></li>
+            <li><a href="/nota">NOTA</a></li>
         </ul>
     </nav>
-
-
 
     <main>
         <section class="main-content">
@@ -63,13 +87,12 @@
             <div class="kepala-dinas">
                 <h2>KEPALA DINAS</h2>
                     <div class="foto-container">
-                        <div class="foto-placeholder">FOTO</div>
+                        <img src="{{ asset('images/balai.jpg') }}" alt="Foto Kepala Dinas">
                     </div>
                     <p>Nama Menteri<br>Menteri Kelautan dan Perikanan</p>
             </div>
-
         </section>
-
+    </main>
 
         <section class="info-perikanan">
             <div class="info-kiri">
@@ -90,9 +113,6 @@
                     <a href="#" style="color: #3b5998;"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
-
-
-
 
             <div class="info-kanan">
                 <h3>HARI KUNJUNGAN</h3>
@@ -119,78 +139,67 @@
                 </ul>
             </div>
         </div>
-
-
-    </main>
-    <br>
+        <br>
     <footer>
         <p style="display: flex; justify-content: center; align-items: center; font-size: 0.8em;">
             Copyright © 2025 Perikanan Kab. Banyuwangi - All rights reserved. | Create by PBL kelompok1.
         </p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <script>
-        function showPopup() {
-            document.getElementById("popup").style.display = "block";
+        function openSidebar() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("overlay").style.display = "block";
         }
 
-        function closePopup() {
-            document.getElementById("popup").style.display = "none";
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("overlay").style.display = "none";
         }
 
         window.onclick = function(event) {
-            var popup = document.getElementById("popup");
-            if (event.target == popup) {
-                closePopup();
-            }
-        }
-    </script>
+            const sidebar = document.getElementById("mySidebar");
+            const overlay = document.getElementById("overlay");
 
-    <script>
-        document.querySelector('.dropbtn').addEventListener('click', function (event) {
-            event.preventDefault(); // Mencegah default link behavior
-            const dropdown = document.querySelector('.dropdown-content');
-            
-            // Toggle tampilan dropdown
-            if (dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
-            } else {
-                dropdown.style.display = 'block';
+            if (event.target === overlay) {
+                closeSidebar();
             }
-        });
 
-        // Tutup dropdown jika klik di luar
-        window.addEventListener('click', function (event) {
-            const dropdown = document.querySelector('.dropdown-content');
-            
-            if (!event.target.matches('.dropbtn')) {
-                dropdown.style.display = 'none';
-            }
-        });
-    </script>
-
-    <script>
-        function toggleHamburgerMenu() {
             const menuContent = document.getElementById("hamburgerMenuContent");
-            
-            // Toggle tampilan menu tambahan
-            if (menuContent.style.display === "block") {
-                menuContent.style.display = "none";
-            } else {
-                menuContent.style.display = "block";
-            }
-        }
-
-        // Tutup hamburger menu jika pengguna mengklik di luar area
-        window.onclick = function(event) {
-            const menuContent = document.getElementById("hamburgerMenuContent");
-            
             if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
-                menuContent.style.display = "none";
+                if (menuContent) menuContent.style.display = "none";
+            }
+
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            dropdowns.forEach(function(dropdown) {
+                if (!event.target.closest('.dropbtn')) {
+                    dropdown.style.display = "none";
+                }
+            });
+        }
+
+        function toggleDropdown(menuId) {
+            const menu = document.getElementById(menuId);
+
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                const allDropdowns = document.querySelectorAll('.dropdown-content');
+                allDropdowns.forEach(function(dropdown) {
+                    dropdown.style.display = "none";
+                });
+                menu.style.display = "block";
             }
         }
+
+        document.querySelectorAll('.dropdown-content a').forEach(function(item) {
+            item.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+        });
     </script>
-
-
 </body>
 </html>
