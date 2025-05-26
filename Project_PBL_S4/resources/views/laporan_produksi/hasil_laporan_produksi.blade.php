@@ -86,7 +86,7 @@
                         <th>Jenis Bibit</th>
                         <th>Bulan Lahir</th>
                         <th>Jumlah Bibit</th>
-                        <th>Restocking</th>
+                        <th>Restoking</th>
                         <th>Harga Perekor</th>
                         <th>Kematian Bibit (%)</th>
                         <th>Jumlah Bibit Akhir</th>

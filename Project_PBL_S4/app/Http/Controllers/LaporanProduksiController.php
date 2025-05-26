@@ -19,7 +19,7 @@ class LaporanProduksiController extends Controller
         'jumlah_bibit' => 'required|integer|min:0',
         'restocking' => 'required|integer|min:0', 
         'kematian_ikan' => 'required|numeric|min:0|max:100',
-        'harga_bibit' => 'required|integer|min:0',
+        'harga_bibit' => 'required|numeric|min:0',
     ]);
 
     Bibit::create($request->all());
@@ -46,7 +46,7 @@ class LaporanProduksiController extends Controller
         'jumlah_bibit' => 'required|integer|min:1',
         'restocking' => 'required|integer|min:0', 
         'kematian_ikan' => 'required|numeric|min:0|max:100', 
-        'harga_bibit' => 'required|integer|min:0',
+        'harga_bibit' => 'required|numeric|min:0',
     ]);
 
     // Update data di database
