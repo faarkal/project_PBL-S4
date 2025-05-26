@@ -86,9 +86,9 @@
                         <th>Jenis Bibit</th>
                         <th>Bulan Lahir</th>
                         <th>Jumlah Bibit</th>
-                        <th>Restoking</th>
+                        <th>Restocking</th>
                         <th>Harga Perekor</th>
-                        <th>Kematian Ikan (%)</th>
+                        <th>Kematian Bibit (%)</th>
                         <th>Jumlah Bibit Akhir</th>
                         <th>Total Harga Akhir</th>
                         <th>Aksi</th>

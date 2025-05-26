@@ -93,12 +93,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="restocking">Restoking:</label>
+                    <label for="restocking">Restocking:</label>
                     <input type="number" id="restocking" name="restocking" min="0" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="kematian_ikan">Kematian Ikan (%):</label>
+                    <label for="kematian_ikan">Kematian Bibit (%):</label>
                     <input type="number" name="kematian_ikan" step="0.01" min="0" max="100" required>
                 </div>
 

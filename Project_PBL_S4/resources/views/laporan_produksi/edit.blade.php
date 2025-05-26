@@ -89,7 +89,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="restocking">Restoking:</label>
+                    <label for="restocking">Restocking:</label>
                     <input type="number" id="restocking" name="restocking" min="0" required>
                 </div>
 
