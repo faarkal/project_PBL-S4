@@ -46,7 +46,6 @@
                 <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">PENGELOLAAN</a>
                 <div id="laporanMenu" class="dropdown-content">
                     <a href="{{ route('laporan.produksi') }}">Pengelolaan Produksi</a>
-                    <a href="#">Pengelolaan Penjualan</a>
                     <a href="#">Pengelolaan Induk</a>
                 </div>
             </li>
@@ -80,7 +79,6 @@
                 </div>
             </div>
 
-            <!-- Tabel untuk menampilkan hasil -->
             <table class="table">
                 <thead>
                     <tr>
@@ -88,9 +86,9 @@
                         <th>Jenis Bibit</th>
                         <th>Bulan Lahir</th>
                         <th>Jumlah Bibit</th>
+                        <th>Restoking</th>
                         <th>Harga Perekor</th>
-                        <th>Total Harga</th>
-                        <th>Kematian Ikan (%)</th>
+                        <th>Kematian Bibit (%)</th>
                         <th>Jumlah Bibit Akhir</th>
                         <th>Total Harga Akhir</th>
                         <th>Aksi</th>
@@ -108,8 +106,8 @@
                                 <td>{{ $laporan->jenis_bibit }}</td>
                                 <td>{{ $laporan->bulan_lahir }}</td>
                                 <td>{{ $laporan->jumlah_bibit }}</td>
+                                <td>{{ $laporan->restocking }}</td>
                                 <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td>
-                                <td>{{ number_format($laporan->jumlah_bibit * $laporan->harga_bibit, 0, ',', '.') }}</td>
                                 <td>{{ round($laporan->kematian_ikan) }}%</td>
                                 <td>{{ number_format($laporan->jumlah_bibit_akhir, 0, ',', '.') }}</td>
                                 <td>{{ number_format($laporan->total_harga, 0, ',', '.') }}</td>

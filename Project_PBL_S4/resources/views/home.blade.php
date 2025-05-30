@@ -48,8 +48,12 @@
                 <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">PENGELOLAAN</a>
                 <div id="laporanMenu" class="dropdown-content">
                     <a href="{{ route('laporan.produksi') }}">Pengelolaan Produksi</a>
+<<<<<<< HEAD
                     <a href="#">Pengelolaan Penjualan</a>
                     <a href="{{ route('laporan.induk.store') }}">Pengelolaan Induk</a>
+=======
+                    <a href="#">Pengelolaan Induk</a>
+>>>>>>> 523989e54c5a7fae69c9c4a9324d31774ad4be5b
                 </div>
             </li>
             <li class="dropdown">
