@@ -6,7 +6,7 @@
     <title>Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   
+
 </head>
 <body>
     <div id="mySidebar" class="sidebar">
@@ -48,7 +48,12 @@
                 <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">PENGELOLAAN</a>
                 <div id="laporanMenu" class="dropdown-content">
                     <a href="{{ route('laporan.produksi') }}">Pengelolaan Produksi</a>
+<<<<<<< HEAD
+                    <a href="#">Pengelolaan Penjualan</a>
+                    <a href="{{ route('laporan.induk.store') }}">Pengelolaan Induk</a>
+=======
                     <a href="#">Pengelolaan Induk</a>
+>>>>>>> 523989e54c5a7fae69c9c4a9324d31774ad4be5b
                 </div>
             </li>
             <li class="dropdown">
@@ -56,12 +61,12 @@
                 <div id="hasilMenu" class="dropdown-content">
                     <a href="{{ route('hasil.laporan.produksi') }}">Hasil Pengelolaan Produksi</a>
                     <a href="#">Hasil Pengelolaan Penjualan</a>
-                    <a href="#">Hasil Pengelolaan Induk</a>
+                    <a href="{{ route('laporan.induk.store') }}">Hasil Pengelolaan Induk</a>
                 </div>
             </li>
             <li><a href="">PEMESANAN</a></li>
             <li><a href="/pelaporan">PELAPORAN</a></li>
-            
+
         </ul>
     </nav>
 
@@ -161,21 +166,21 @@
         window.onclick = function(event) {
             const sidebar = document.getElementById("mySidebar");
             const overlay = document.getElementById("overlay");
-            
+
             if (event.target === overlay) {
                 closeSidebar();
             }
-            
+
             // Kode untuk dropdown menu yang sudah ada
             const menuContent = document.getElementById("hamburgerMenuContent");
             if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
                 if (menuContent) menuContent.style.display = "none";
             }
-            
+
             const dropdowns = document.querySelectorAll('.dropdown-content');
             dropdowns.forEach(function(dropdown) {
                 if (!event.target.closest('.dropbtn')) {
-                    dropdown.style.display = "none"; 
+                    dropdown.style.display = "none";
                 }
             });
         }
@@ -189,9 +194,9 @@
             } else {
                 const allDropdowns = document.querySelectorAll('.dropdown-content');
                 allDropdowns.forEach(function(dropdown) {
-                    dropdown.style.display = "none"; 
+                    dropdown.style.display = "none";
                 });
-                menu.style.display = "block"; 
+                menu.style.display = "block";
             }
         }
 
