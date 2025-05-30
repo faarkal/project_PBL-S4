@@ -7,6 +7,8 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\HasilLaporanController;
 use App\Http\Controllers\LaporanIndukController;
 use App\Http\Controllers\JenisIkanController;
+use App\Exports\LaporanIndukExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 Route::get('/', function () {
@@ -20,7 +22,7 @@ Route::get('/laporan-produksi', function () {
 })->name('laporan.produksi');
 
 Route::get('/pelaporan', function () {
-    return view('pelaporan'); 
+    return view('pelaporan');
 });
 
 Route::post('/laporan-produksi/store', [LaporanProduksiController::class, 'store'])->name('laporan.produksi.store');
@@ -48,3 +50,7 @@ Route::post('/laporan-produksi/store', [LaporanProduksiController::class, 'store
 
 Route::get('/jenis-ikan/create', [JenisIkanController::class, 'create'])->name('jenis-ikan.create');
 Route::post('/jenis-ikan', [JenisIkanController::class, 'store'])->name('jenis-ikan.store');
+
+Route::get('/laporan-induk/export/excel', function () {
+    return Excel::download(new LaporanIndukExport, 'laporan-induk.xlsx');
+})->name('laporan.induk.export.excel');
