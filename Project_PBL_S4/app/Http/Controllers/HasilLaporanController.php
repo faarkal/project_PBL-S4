@@ -19,6 +19,7 @@ class HasilLaporanController extends Controller
             'jenis_bibit',
             'bulan_lahir',
             'jumlah_bibit',
+            'ukuran_ikan',
             'restocking', 
             'kematian_ikan',
             'harga_bibit',

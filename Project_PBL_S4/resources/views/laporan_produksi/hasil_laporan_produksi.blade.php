@@ -84,11 +84,12 @@
                     <tr>
                         <th>No.</th>
                         <th>Jenis Bibit</th>
-                        <th>Bulan Lahir</th>
+                        <th>Bulan Menetas</th>
                         <th>Jumlah Bibit</th>
+                        <th>Ukuran Ikan</th>
                         <th>Restoking</th>
                         <th>Harga Perekor</th>
-                        <th>Kematian Bibit (%)</th>
+                        <th>Kematian Bibit</th>
                         <th>Jumlah Bibit Akhir</th>
                         <th>Total Harga Akhir</th>
                         <th>Aksi</th>
@@ -106,6 +107,7 @@
                                 <td>{{ $laporan->jenis_bibit }}</td>
                                 <td>{{ $laporan->bulan_lahir }}</td>
                                 <td>{{ $laporan->jumlah_bibit }}</td>
+                                <td>{{ number_format($laporan->ukuran_ikan, 0) }}</td>
                                 <td>{{ $laporan->restocking }}</td>
                                 <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td>
                                 <td>{{ round($laporan->kematian_ikan) }}%</td>
@@ -118,10 +120,11 @@
                                         <button type="button" class="btn-delete" onclick="confirmDelete({{ $laporan->id }})">
                                             <i class="fas fa-trash"></i> Delete
                                         </button>
+                                        <a href="{{ route('laporan.produksi.edit', $laporan->id) }}" class="btn-edit">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
                                     </form>
-                                    <a href="{{ route('laporan.produksi.edit', $laporan->id) }}" class="btn-edit">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </a>
+
                                 </td>
                             </tr>
                         @endforeach

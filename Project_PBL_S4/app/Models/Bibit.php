@@ -20,4 +20,10 @@ class Bibit extends Model
     ];
 
     public $timestamps = true; 
+
+    // app/Models/Bibit.php
+    public function jenisIkan()
+    {
+        return $this->belongsTo(JenisIkan::class, 'jenis_bibit', 'id');
+    }
 }

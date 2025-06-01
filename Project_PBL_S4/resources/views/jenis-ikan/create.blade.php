@@ -3,77 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Tambah Jenis Ikan - Balai Usaha Perikanan Genteng</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Balai Usaha Perikanan Genteng</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
-        <div class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden p-6">
-            <h1 class="text-2xl font-bold text-gray-800 mb-6">Tambah Jenis Ikan Baru</h1>
-            
-            <form id="tambahIkanForm" class="space-y-4">
-                @csrf
-                <div>
-                    <label for="nama_ikan" class="block text-sm font-medium text-gray-700">Nama Jenis Ikan</label>
-                    <input type="text" id="nama_ikan" name="nama_ikan" required
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
-                </div>
-
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="{{ route('home') }}" class="btn btn-secondary me-md-2">
-                        <i class="fas fa-home"></i> Kembali ke Home
-                    </a>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Tambahkan
-                    </button>
-                </div>
-            </form>
-        </div>
+<body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+        <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="{{ route('jenis-ikan.create') }}"><i class="fa fa-plus"></i> Tambahkan Ikan</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
-    <script>
-        document.getElementById('tambahIkanForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                nama_ikan: document.getElementById('nama_ikan').value
-            };
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
 
-            fetch('/jenis-ikan', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(err => { throw err; });
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="{{ asset('images/logo-kabupaten-banyuwangi.png') }}" alt="Logo">
+            </div>
+            <h1>BALAI USAHA PERIKANAN GENTENG</h1>
+            <div class="logo">
+                <img src="{{ asset('images/kementrian_perikanan.png') }}" alt="Logo Ikan">
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <div class="hamburger-menu" onclick="openSidebar()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <a href="{{ route('home') }}">HOME</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="simple-form">
+            <h2 class="form-title">Tambah Jenis Ikan</h2>
+            
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            
+            <form action="{{ route('jenis-ikan.store') }}" method="POST">
+                @csrf
+                
+                <div class="input-group">
+                    <label for="nama_ikan" class="input-label required">Nama Ikan</label>
+                    <input type="text" id="nama_ikan" name="nama_ikan" class="input-field" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-save"></i> Simpan Data
+                </button>
+            </form>
+        </div>
+    </main>
+
+
+        <section class="info-perikanan">
+            <div class="info-kiri">
+                <div class="perikanan-header">
+                    <div class="logo">
+                        <img src="{{ asset('images/kementrian_perikanan.png') }}" alt="Logo Ikan">
+                    </div>
+                    <h2>PERIKANAN</h2>
+                </div>
+                    <p><strong>DINAS PERIKANAN BANYUWANGI</strong></p>
+                    <p>UP: Balai Benih Ikan Genteng<br>Jl. KH. Agus Salim No.106, Lingkungan Cuking RW, Mojopanggung, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68424.</p>
+                    <p>Telephone:</p>
+                    <p>Email:</p>
+                <div class="social-icons">
+                    <a href="#" style="color: #c32aa3;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="color: #ff0000;"><i class="fab fa-youtube"></i></a>
+                    <a href="#" style="color: #1da1f2;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="color: #3b5998;"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+
+            <div class="info-kanan">
+                <h3>HARI KUNJUNGAN</h3>
+                <ul>
+                    <li>Senin: 07:00-17:00</li>
+                    <li>Selasa: 07:00-17:00</li>
+                    <li>Rabu: 07:00-17:00</li>
+                    <li>Kamis: 07:00-17:00</li>
+                    <li>Jumat: Tutup</li>
+                    <li>Sabtu: Tutup</li>
+                    <li>Minggu: 07:00-17:00</li>
+                </ul>
+            </div>
+        </section>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="closePopup()">&times;</span>
+                <h3>Pilih Laporan</h3>
+                <ul>
+                    <li><a href="#">Laporan Produksi</a></li>
+                    <li><a href="#">Laporan Penjualan</a></li>
+                    <li><a href="#">Laporan Induk</a></li>
+                </ul>
+            </div>
+        </div>
+        <br>
+    <footer>
+        <p style="display: flex; justify-content: center; align-items: center; font-size: 0.8em;">
+            Copyright © 2025 Perikanan Kab. Banyuwangi - All rights reserved. | Create by PBL kelompok1.
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script>
+        // Fungsi untuk membuka sidebar
+        function openSidebar() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        // Fungsi untuk menutup sidebar
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("overlay").style.display = "none";
+        }
+
+        // Tutup sidebar jika mengklik di luar sidebar
+        window.onclick = function(event) {
+            const sidebar = document.getElementById("mySidebar");
+            const overlay = document.getElementById("overlay");
+            
+            if (event.target === overlay) {
+                closeSidebar();
+            }
+            
+            // Kode untuk dropdown menu yang sudah ada
+            const menuContent = document.getElementById("hamburgerMenuContent");
+            if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
+                if (menuContent) menuContent.style.display = "none";
+            }
+            
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            dropdowns.forEach(function(dropdown) {
+                if (!event.target.closest('.dropbtn')) {
+                    dropdown.style.display = "none"; 
                 }
-                return response.json();
-            })
-            .then(data => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: data.message,
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    document.getElementById('nama_ikan').value = '';
+            });
+        }
+
+        // Fungsi untuk toggle dropdown (tetap sama)
+        function toggleDropdown(menuId) {
+            const menu = document.getElementById(menuId);
+
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                const allDropdowns = document.querySelectorAll('.dropdown-content');
+                allDropdowns.forEach(function(dropdown) {
+                    dropdown.style.display = "none"; 
                 });
-            })
-            .catch(error => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: error.message || 'Terjadi kesalahan',
-                    confirmButtonText: 'OK'
-                });
-                console.error('Error:', error);
+                menu.style.display = "block"; 
+            }
+        }
+
+        // Mencegah event bubbling pada dropdown items
+        document.querySelectorAll('.dropdown-content a').forEach(function(item) {
+            item.addEventListener('click', function(event) {
+                event.stopPropagation();
             });
         });
     </script>

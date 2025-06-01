@@ -65,8 +65,165 @@
         </ul>
     </nav>
 
-    <br>
-    <br>
+     <div class="report-container">
+        <div class="report-header">
+            <div class="report-title">LAPORAN BULANAN PRODUKSI BENIH IKAN</div>
+            <div class="report-period">Bulan: Maret 2025</div>
+        </div>
+        
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th rowspan="2">NO</th>
+                    <th rowspan="2">JENIS IKAN</th>
+                    <th colspan="2">SISA PRODUKSI BULAN LALU</th>
+                    <th colspan="2">PRODUKSI BULAN INI</th>
+                    <th colspan="2">JUMLAH TOTAL</th>
+                    <th colspan="8">PENGURANGAN BENIH BULAN INI</th>
+                    <th colspan="2">SISA BENIH AKHIR BULAN INI</th>
+                </tr>
+                <tr>
+                    <th>Ukuran (Cm)</th>
+                    <th>Jumlah (ekor)</th>
+                    <th>Ukuran (cm)</th>
+                    <th>Jumlah (ekor)</th>
+                    <th>Ukuran (cm)</th>
+                    <th>Jumlah (ekor)</th>
+                    <th colspan="4">TERJUAL</th>
+                    <th colspan="2">RESTOKING</th>
+                    <th colspan="2">MATI</th>
+                    <th>Ukuran (cm)</th>
+                    <th>Jumlah (ekor)</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Ukuran (cm)</th>
+                    <th>Jumlah (ekor)</th>
+                    <th>Harga Satuan (Rp)</th>
+                    <th>Jumlah (Rp)</th>
+                    <th>Ukuran (cm)</th>
+                    <th>Jumlah (ekor)</th>
+                    <th>Ukuran (cm)</th>
+                    <th>Jumlah (ekor)</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Data for KOI -->
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Total Row -->
+                <tr style="font-weight: bold;">
+                    <td colspan="3">JUMLAH</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
         <section class="info-perikanan">
             <div class="info-kiri">

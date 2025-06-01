@@ -48,3 +48,5 @@ Route::post('/laporan-produksi/store', [LaporanProduksiController::class, 'store
 
 Route::get('/jenis-ikan/create', [JenisIkanController::class, 'create'])->name('jenis-ikan.create');
 Route::post('/jenis-ikan', [JenisIkanController::class, 'store'])->name('jenis-ikan.store');
+
+Route::resource('jenis-ikan', JenisIkanController::class)->only(['create', 'store', 'index']);

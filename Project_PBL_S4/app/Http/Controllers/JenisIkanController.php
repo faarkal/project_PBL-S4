@@ -17,13 +17,18 @@ class JenisIkanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_ikan' => 'required|string|max:255|unique:jenis_ikans'
+            'nama_ikan' => 'required|string|max:100',
         ]);
     
-        JenisIkan::create([
-            'nama_ikan' => $request->nama_ikan
-        ]);
-    
-        return redirect()->route('home')->with('success', 'Jenis ikan berhasil ditambahkan');
+        JenisIkan::create($request->all());
+
+        return redirect()->route('jenis-ikan.create')
+            ->with('success', 'Jenis ikan berhasil ditambahkan');
+    }
+
+    public function index()
+    {
+        $jenisIkan = JenisIkan::all();
+        return view('jenis_ikan.index', compact('jenisIkan'));
     }
 }

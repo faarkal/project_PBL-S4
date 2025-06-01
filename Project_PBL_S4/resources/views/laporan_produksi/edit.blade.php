@@ -78,7 +78,7 @@
 
                 <!-- Bulan Lahir -->
                 <div class="form-group">
-                    <label for="bulan_lahir">Bulan Lahir Bibit:</label>
+                    <label for="bulan_lahir">Bulan Menetas Bibit:</label>
                     <input type="date" id="bulan_lahir" name="bulan_lahir" value="{{ $bibit->bulan_lahir }}" required>
                 </div>
 
@@ -86,6 +86,11 @@
                 <div class="form-group">
                     <label for="jumlah_bibit">Jumlah Bibit:</label>
                     <input type="number" id="jumlah_bibit" name="jumlah_bibit" value="{{ $bibit->jumlah_bibit }}" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="ukuran_ikan">Ukuran Ikan (cm):</label>
+                    <input type="number" id="ukuran_ikan" name="ukuran_ikan" min="0" required>
                 </div>
 
                 <div class="form-group">
