@@ -65,42 +65,59 @@
         </ul>
     </nav>
 
-    <main>
-        <section class="simple-form">
-            <h2>Form Pemesanan Bibit Ikan</h2>
-            <form id="formPemesanan" class="pemesanan-form" action="{{ route('pemesanan.store') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label for="nama_pembeli">Nama Pembeli:</label>
-                    <input type="text" id="nama_pembeli" name="nama_pembeli" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="no_telepon">Nomor Telepon:</label>
-                    <input type="tel" id="no_telepon" name="no_telepon" required>
-                </div>
-                
-                 <div class="form-group" style="margin-bottom:15px;">
-                    <label for="jenis_bibit" style="margin-bottom:6px;">Jenis Bibit Ikan:</label>
-                    <select name="jenis_bibit" id="jenis_bibit" style="width:1260px; padding:10px; font-size:15px;" required>
-                        <option value="">-- Pilih Jenis Ikan --</option>
-                        @foreach(App\Models\JenisIkan::all() as $ikan)
-                            <option value="{{ $ikan->id }}">{{ $ikan->nama_ikan }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="jumlah_bibit">Jumlah Bibit:</label>
-                    <input type="number" id="jumlah_bibit" name="jumlah_bibit" min="1" required>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="submit" class="btn-submit">Simpan Pemesanan</button>
-                </div>
-            </form>
-        </section>
-    </main>
+<main>
+    <section class="simple-form">
+        <h2>Form Pemesanan Bibit Ikan</h2>
+        <form id="formPemesanan" class="pemesanan-form" action="{{ route('pemesanan.store') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="nama_pembeli">Nama Pembeli:</label>
+                <input type="text" id="nama_pembeli" name="nama_pembeli" required
+                       value="{{ old('nama_pembeli') }}">
+                @error('nama_pembeli')
+                    <span class="error-message">{{ $message }}</span>
+                @enderror
+            </div>
+            
+            <div class="form-group">
+                <label for="no_telepon">Nomor Telepon:</label>
+                <input type="tel" id="no_telepon" name="no_telepon" required
+                       value="{{ old('no_telepon') }}">
+                @error('no_telepon')
+                    <span class="error-message">{{ $message }}</span>
+                @enderror
+            </div>
+            
+            <div class="form-group" style="margin-bottom:15px;">
+                <label for="jenis_ikan" style="margin-bottom:6px;">Jenis Bibit Ikan:</label>
+                <select name="jenis_ikan" id="jenis_ikan" style="width:1260px; padding:10px; font-size:15px;" required>
+                    <option value="">-- Pilih Jenis Ikan --</option>
+                    @foreach(App\Models\JenisIkan::all() as $ikan)
+                        <option value="{{ $ikan->id }}" {{ old('jenis_ikan') == $ikan->id ? 'selected' : '' }}>
+                            {{ $ikan->nama_ikan }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('jenis_ikan')
+                    <span class="error-message">{{ $message }}</span>
+                @enderror
+            </div>
+            
+            <div class="form-group">
+                <label for="jumlah_bibit">Jumlah Bibit:</label>
+                <input type="number" id="jumlah_bibit" name="jumlah_bibit" min="1" required
+                       value="{{ old('jumlah_bibit') }}">
+                @error('jumlah_bibit')
+                    <span class="error-message">{{ $message }}</span>
+                @enderror
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Simpan Pemesanan</button>
+            </div>
+        </form>
+    </section>
+</main>
 
         <section class="info-perikanan">
             <div class="info-kiri">

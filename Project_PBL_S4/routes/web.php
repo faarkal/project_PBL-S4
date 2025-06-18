@@ -62,11 +62,11 @@ Route::get('/laporan-induk/export/excel', function () {
 
 Route::get('/visi-misi', [VisiMisiController::class, 'index']);
 
-Route::prefix('admin')->group(function () {
+Route::prefix('Admin')->group(function () {
     Route::get('/Admin/pemesanan', [PemesananController::class, 'index'])->name('pemesanan.index');
     Route::get('/Admin/pemesanan/create', [PemesananController::class, 'create'])->name('pemesanan.create');
     Route::post('/Admin/pemesanan', [PemesananController::class, 'store'])->name('pemesanan.store');
 });
 
-Route::get('/hasil/pemesanan', [PemesananController::class, 'hasilPemesanan'])
-         ->name('hasil.pemesanan');
+Route::get('/hasil/penjualan', [PemesananController::class, 'hasilPenjualan'])->name('hasil.penjualan');
+Route::put('/pemesanan/{id}/status', [PemesananController::class, 'updateStatus'])->name('pemesanan.update-status');

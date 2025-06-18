@@ -55,7 +55,7 @@
                 <a href="#" class="dropbtn" onclick="toggleDropdown('hasilMenu')">HASIL</a>
                 <div id="hasilMenu" class="dropdown-content">
                     <a href="{{ route('hasil.laporan.produksi') }}">Hasil Pengelolaan Produksi</a>
-                    <a href="#">Hasil Pengelolaan Penjualan</a>
+                    <a href="{{ route('hasil.penjualan') }}">Hasil Pengelolaan Penjualan</a>
                     <a href="{{ route('laporan.induk.store') }}">Hasil Pengelolaan Induk</a>
                 </div>
             </li>

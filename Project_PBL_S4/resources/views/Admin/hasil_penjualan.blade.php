@@ -65,15 +65,14 @@
     </nav>
 
     <main>
-       @section('content')
-<div class="container">
-    <h2>Hasil Pengelolaan Penjualan</h2>
-    
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+      <div class="container">
+            <h2>Hasil Pengelolaan Penjualan</h2>
+            
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
 
     <div class="table-responsive">
         <table class="table table-striped table-bordered">
@@ -116,7 +115,7 @@
         </table>
     </div>
 </div>
-@endsection
+
     </main>
 
 
