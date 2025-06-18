@@ -47,4 +47,10 @@ class HasilLaporanController extends Controller
         return view('laporan_produksi.hasil_laporan_produksi', compact('laporanProduksi', 'keyword', 'totalHargaBibit', 'message'));
     }
 
+    public function clientIndex()
+    {
+        $laporans = LaporanProduksi::where('status', 'published')->get(); // Hanya tampilkan yang published
+        return view('client.hasil_laporan_produksi', compact('laporans'));
+    }
+
 }

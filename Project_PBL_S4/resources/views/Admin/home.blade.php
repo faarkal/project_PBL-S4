@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client - Balai Usaha Perikanan Genteng</title>
+    <title>Admin - Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -12,6 +12,7 @@
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
         <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="{{ route('jenis-ikan.create') }}"><i class="fa fa-plus"></i> Tambahkan Ikan</a>
         <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
@@ -44,6 +45,13 @@
                 <a href="#">PROFILE</a>
             </li>
             <li class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">PENGELOLAAN</a>
+                <div id="laporanMenu" class="dropdown-content">
+                    <a href="{{ route('laporan.produksi') }}">Pengelolaan Produksi</a>
+                    <a href="{{ route('laporan.induk.store') }}">Pengelolaan Induk</a>
+                </div>
+            </li>
+            <li class="dropdown">
                 <a href="#" class="dropbtn" onclick="toggleDropdown('hasilMenu')">HASIL</a>
                 <div id="hasilMenu" class="dropdown-content">
                     <a href="{{ route('hasil.laporan.produksi') }}">Hasil Pengelolaan Produksi</a>
@@ -51,7 +59,7 @@
                     <a href="{{ route('laporan.induk.store') }}">Hasil Pengelolaan Induk</a>
                 </div>
             </li>
-            <li><a href="">PEMESANAN</a></li>
+            <li><a href="{{ route('pemesanan.index') }}">PEMESANAN</a></li>
             <li><a href="/pelaporan">PELAPORAN</a></li>
 
         </ul>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Balai Usaha Perikanan Genteng</title>
+    <title>Admin - Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -66,26 +66,39 @@
     </nav>
 
     <main>
-        <section class="main-content">
-            <div class="info-kiri-text">
-                <h2>Selamat Datang di Balai Usaha Perikanan Genteng</h2>
-                <br>
-                    <p>
-                        Balai Usaha Perikanan Genteng adalah unit pelayanan teknis di bawah Dinas Perikanan Kabupaten Banyuwangi.
-                        Kami berkomitmen untuk memberikan pelayanan terbaik dalam pengembangan usaha perikanan di wilayah Genteng dan sekitarnya.
-                    </p>
-                    <p>
-                        Melalui berbagai program dan kegiatan, kami berupaya meningkatkan produktivitas dan kesejahteraan para pelaku usaha perikanan.
-                    </p>
-            </div>
-
-            <div class="kepala-dinas">
-                <h2>KEPALA DINAS</h2>
-                    <div class="foto-container">
-                        <img src="{{ asset('images/balai.jpg') }}" alt="Foto Kepala Dinas">
-                    </div>
-                    <p>PBL kel1<br>Menteri Kelautan dan Perikanan</p>
-            </div>
+        <section class="simple-form">
+            <h2>Form Pemesanan Bibit Ikan</h2>
+            <form id="formPemesanan" class="pemesanan-form" action="{{ route('pemesanan.store') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="nama_pembeli">Nama Pembeli:</label>
+                    <input type="text" id="nama_pembeli" name="nama_pembeli" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="no_telepon">Nomor Telepon:</label>
+                    <input type="tel" id="no_telepon" name="no_telepon" required>
+                </div>
+                
+                 <div class="form-group" style="margin-bottom:15px;">
+                    <label for="jenis_bibit" style="margin-bottom:6px;">Jenis Bibit Ikan:</label>
+                    <select name="jenis_bibit" id="jenis_bibit" style="width:1260px; padding:10px; font-size:15px;" required>
+                        <option value="">-- Pilih Jenis Ikan --</option>
+                        @foreach(App\Models\JenisIkan::all() as $ikan)
+                            <option value="{{ $ikan->id }}">{{ $ikan->nama_ikan }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="jumlah_bibit">Jumlah Bibit:</label>
+                    <input type="number" id="jumlah_bibit" name="jumlah_bibit" min="1" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Simpan Pemesanan</button>
+                </div>
+            </form>
         </section>
     </main>
 

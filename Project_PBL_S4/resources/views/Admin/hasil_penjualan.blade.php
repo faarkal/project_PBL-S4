@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client - Balai Usaha Perikanan Genteng</title>
+    <title>Hasil Laporan Produksi - Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 </head>
 <body>
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
         <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="{{ route('jenis-ikan.create') }}"><i class="fa fa-plus"></i> Tambahkan Ikan</a>
         <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
 
     <!-- Overlay -->
     <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
@@ -40,48 +43,84 @@
                 </div>
                 <a href="{{ route('home') }}">HOME</a>
             </li>
-            <li>
-                <a href="#">PROFILE</a>
+            <li><a href="#">PROFILE</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown('laporanMenu')">PENGELOLAAN</a>
+                <div id="laporanMenu" class="dropdown-content">
+                    <a href="{{ route('laporan.produksi') }}">Pengelolaan Produksi</a>
+                    <a href="#">Pengelolaan Induk</a>
+                </div>
             </li>
             <li class="dropdown">
                 <a href="#" class="dropbtn" onclick="toggleDropdown('hasilMenu')">HASIL</a>
                 <div id="hasilMenu" class="dropdown-content">
                     <a href="{{ route('hasil.laporan.produksi') }}">Hasil Pengelolaan Produksi</a>
                     <a href="#">Hasil Pengelolaan Penjualan</a>
-                    <a href="{{ route('laporan.induk.store') }}">Hasil Pengelolaan Induk</a>
+                    <a href="#">Hasil Pengelolaan Induk</a>
                 </div>
             </li>
             <li><a href="">PEMESANAN</a></li>
             <li><a href="/pelaporan">PELAPORAN</a></li>
-
         </ul>
     </nav>
 
     <main>
-        <section class="main-content">
-            <div class="info-kiri-text">
-                <h2>Selamat Datang di Balai Usaha Perikanan Genteng</h2>
-                <br>
-                    <p>
-                        Balai Usaha Perikanan Genteng adalah unit pelayanan teknis di bawah Dinas Perikanan Kabupaten Banyuwangi.
-                        Kami berkomitmen untuk memberikan pelayanan terbaik dalam pengembangan usaha perikanan di wilayah Genteng dan sekitarnya.
-                    </p>
-                    <p>
-                        Melalui berbagai program dan kegiatan, kami berupaya meningkatkan produktivitas dan kesejahteraan para pelaku usaha perikanan.
-                    </p>
-            </div>
+       @section('content')
+<div class="container">
+    <h2>Hasil Pengelolaan Penjualan</h2>
+    
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
-            <div class="kepala-dinas">
-                <h2>KEPALA DINAS</h2>
-                    <div class="foto-container">
-                        <img src="{{ asset('images/balai.jpg') }}" alt="Foto Kepala Dinas">
-                    </div>
-                    <p>PBL kel1<br>Menteri Kelautan dan Perikanan</p>
-            </div>
-        </section>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>No</th>
+                    <th>Nama Pembeli</th>
+                    <th>No Telepon</th>
+                    <th>Jenis Ikan</th>
+                    <th>Jumlah Bibit</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($pemesanans as $key => $pemesanan)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $pemesanan->nama_pembeli }}</td>
+                    <td>{{ $pemesanan->no_telepon }}</td>
+                    <td>{{ $pemesanan->jenisIkan->nama }}</td>
+                    <td>{{ $pemesanan->jumlah_bibit }}</td>
+                    <td>
+                        <span class="badge badge-{{ $pemesanan->status == 'selesai' ? 'success' : 'warning' }}">
+                            {{ ucfirst($pemesanan->status) }}
+                        </span>
+                    </td>
+                    <td>
+                        <form action="{{ route('pemesanan.update-status', $pemesanan->id) }}" method="POST" style="display: inline-block;">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-sm btn-{{ $pemesanan->status == 'pending' ? 'success' : 'secondary' }}">
+                                {{ $pemesanan->status == 'pending' ? 'Tandai Selesai' : 'Selesai' }}
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+@endsection
     </main>
 
-        <section class="info-perikanan">
+
+    <section class="info-perikanan">
             <div class="info-kiri">
                 <div class="perikanan-header">
                     <div class="logo">
@@ -126,7 +165,10 @@
                 </ul>
             </div>
         </div>
-        <br>
+
+
+    </main>
+    <br>
     <footer>
         <p style="display: flex; justify-content: center; align-items: center; font-size: 0.8em;">
             Copyright © 2025 Perikanan Kab. Banyuwangi - All rights reserved. | Create by PBL kelompok1.
@@ -135,6 +177,90 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin menghapus data ini?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal',
+                background: '#fff',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+
+        @if(session()->has('success'))
+            Swal.fire({
+                icon: 'success',
+                title: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                position: 'top-end',
+                toast: true,
+                background: '#fff',
+            });
+        @endif
+    </script>
+
+
+    <script>
+        function toggleHamburgerMenu() {
+            const menuContent = document.getElementById("hamburgerMenuContent");
+
+            if (menuContent.style.display === "block") {
+                menuContent.style.display = "none";
+            } else {
+                menuContent.style.display = "block";
+            }
+        }
+
+        window.onclick = function(event) {
+            const menuContent = document.getElementById("hamburgerMenuContent");
+
+            if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
+                menuContent.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+        function toggleDropdown(menuId) {
+            const menu = document.getElementById(menuId);
+
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                const allDropdowns = document.querySelectorAll('.dropdown-content');
+                allDropdowns.forEach(function(dropdown) {
+                    dropdown.style.display = "none";
+                });
+                menu.style.display = "block";
+            }
+        }
+
+        window.onclick = function(event) {
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+
+            dropdowns.forEach(function(dropdown) {
+                if (!event.target.closest('.dropbtn')) {
+                    dropdown.style.display = "none";
+                }
+            });
+        }
+
+        document.querySelectorAll('.dropdown-content a').forEach(function(item) {
+            item.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+        });
+    </script>
 
     <script>
         // Fungsi untuk membuka sidebar
@@ -153,21 +279,21 @@
         window.onclick = function(event) {
             const sidebar = document.getElementById("mySidebar");
             const overlay = document.getElementById("overlay");
-
+            
             if (event.target === overlay) {
                 closeSidebar();
             }
-
+            
             // Kode untuk dropdown menu yang sudah ada
             const menuContent = document.getElementById("hamburgerMenuContent");
             if (!event.target.closest("nav ul li a[onclick='toggleHamburgerMenu()']")) {
                 if (menuContent) menuContent.style.display = "none";
             }
-
+            
             const dropdowns = document.querySelectorAll('.dropdown-content');
             dropdowns.forEach(function(dropdown) {
                 if (!event.target.closest('.dropbtn')) {
-                    dropdown.style.display = "none";
+                    dropdown.style.display = "none"; 
                 }
             });
         }
@@ -181,9 +307,9 @@
             } else {
                 const allDropdowns = document.querySelectorAll('.dropdown-content');
                 allDropdowns.forEach(function(dropdown) {
-                    dropdown.style.display = "none";
+                    dropdown.style.display = "none"; 
                 });
-                menu.style.display = "block";
+                menu.style.display = "block"; 
             }
         }
 
@@ -194,5 +320,7 @@
             });
         });
     </script>
+
+
 </body>
 </html>

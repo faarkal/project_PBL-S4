@@ -8,6 +8,6 @@ class LaporanController extends Controller
 {
     public function penjualan()
     {
-        return view('laporan.penjualan'); // nanti kita buat view ini
+        return view('laporan.penjualan'); 
     }
 }

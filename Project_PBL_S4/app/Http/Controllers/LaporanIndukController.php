@@ -61,4 +61,10 @@ class LaporanIndukController extends Controller
 
         return redirect()->route('hasil.laporan.induk')->with('success', 'Data berhasil dihapus!');
     }
+
+    public function clientIndex()
+    {
+        $laporans = LaporanInduk::where('is_public', true)->get(); // Hanya tampilkan yang public
+        return view('client.laporan_induk', compact('laporans'));
+    }
 }
