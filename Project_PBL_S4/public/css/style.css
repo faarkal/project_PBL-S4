@@ -797,20 +797,31 @@ main {
     background-color: #f9f9f9;
 }
        
-.month-selector {
-    margin: 20px 0;
-    text-align: center;
+.month-selection {
+    margin-bottom: 20px;
+    text-align: left;
 }
 
-.month-selector select {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.month-selection label {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-right: 10px;
     font-size: 16px;
-    margin-right: 5px;
 }
 
-.month-selector label {
-    font-weight: 600;
-    margin-right: 5px;
+.month-select {
+    padding: 10px 15px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: white;
+    color: #2c3e50;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+.month-select:focus {
+    outline: none;
+    border-color: #2980b9;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
 }

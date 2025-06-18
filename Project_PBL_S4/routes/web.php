@@ -7,20 +7,20 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\HasilLaporanController;
 use App\Http\Controllers\LaporanIndukController;
 use App\Http\Controllers\JenisIkanController;
+use App\Exports\LaporanIndukExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/visi-misi', [VisiMisiController::class, 'index']);
-
 Route::get('/laporan-produksi', function () {
     return view('laporan_produksi');
 })->name('laporan.produksi');
 
 Route::get('/pelaporan', function () {
-    return view('pelaporan'); 
+    return view('pelaporan');
 });
 
 Route::post('/laporan-produksi/store', [LaporanProduksiController::class, 'store'])->name('laporan.produksi.store');
@@ -50,3 +50,11 @@ Route::get('/jenis-ikan/create', [JenisIkanController::class, 'create'])->name('
 Route::post('/jenis-ikan', [JenisIkanController::class, 'store'])->name('jenis-ikan.store');
 
 Route::resource('jenis-ikan', JenisIkanController::class)->only(['create', 'store', 'index']);
+
+Route::get('/pelaporan', [LaporanProduksiController::class, 'pelaporan']);
+
+Route::get('/laporan-induk/export/excel', function () {
+    return Excel::download(new LaporanIndukExport, 'laporan-induk.xlsx');
+})->name('laporan.induk.export.excel');
+
+Route::get('/visi-misi', [VisiMisiController::class, 'index']);

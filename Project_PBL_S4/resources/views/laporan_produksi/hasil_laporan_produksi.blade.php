@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-<!-- Sidebar -->
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
         <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
-        <a href="#"><i class=""></i> Tambahkan Ikan</a>
+        <a href="{{ route('jenis-ikan.create') }}"><i class="fa fa-plus"></i> Tambahkan Ikan</a>
         <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
 
     <!-- Overlay -->
     <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
@@ -118,10 +120,10 @@
                                     <form id="delete-form-{{ $laporan->id }}" action="{{ route('laporan.produksi.delete', $laporan->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         <button type="button" class="btn-delete" onclick="confirmDelete({{ $laporan->id }})">
-                                            <i class="fas fa-trash"></i> Delete
+                                            <i class="fas fa-trash"></i> 
                                         </button>
                                         <a href="{{ route('laporan.produksi.edit', $laporan->id) }}" class="btn-edit">
-                                            <i class="fas fa-edit"></i> Edit
+                                            <i class="fas fa-edit"></i> 
                                         </a>
                                     </form>
 

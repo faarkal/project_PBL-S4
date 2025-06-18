@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balai Usaha Perikanan Genteng</title>
+    <title>Pelaporan - Balai Usaha Perikanan Genteng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
    
@@ -65,12 +65,28 @@
         </ul>
     </nav>
 
-     <div class="report-container">
+    <div class="report-container">
         <div class="report-header">
             <div class="report-title">LAPORAN BULANAN PRODUKSI BENIH IKAN</div>
-            <div class="report-period">Bulan: Maret 2025</div>
+        <div class="month-selection">
+            <label for="monthSelect">Pilih Bulan:</label>
+            <select id="monthSelect" class="month-select" onchange="updateReportMonth()">
+                <option value="Januari">Januari</option>
+                <option value="Februari">Februari</option>
+                <option value="Maret" selected>Maret</option>
+                <option value="April">April</option>
+                <option value="Mei">Mei</option>
+                <option value="Juni">Juni</option>
+                <option value="Juli">Juli</option>
+                <option value="Agustus">Agustus</option>
+                <option value="September">September</option>
+                <option value="Oktober">Oktober</option>
+                <option value="November">November</option>
+                <option value="Desember">Desember</option>
+            </select>
         </div>
-        
+    </div>
+
         <table class="report-table">
             <thead>
                 <tr>
@@ -117,109 +133,67 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($laporanProduksi as $key => $laporan)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $laporan->jenis_bibit }}</td>
+                    
+                    <!-- Sisa Produksi Bulan Lalu -->
+                    <td>{{ $laporan->ukuran_ikan }}</td>
+                    <td>{{ number_format($laporan->jumlah_bibit, 0, ',', '.') }}</td>
+                    
+                    <!-- Produksi Bulan Ini -->
+                    <td>{{ $laporan->ukuran_ikan }}</td>
+                    <td>{{ number_format($laporan->restocking, 0, ',', '.') }}</td>
+                    
+                    <!-- Jumlah Total -->
+                    <td>{{ $laporan->ukuran_ikan }}</td>
+                    <td>{{ number_format($laporan->jumlah_bibit + $laporan->restocking, 0, ',', '.') }}</td>
+                    
+                    <!-- Terjual -->
+                    <td>{{ $laporan->ukuran_ikan }}</td>
+                    <td>{{ number_format($laporan->jumlah_bibit * ($laporan->kematian_ikan/100), 0, ',', '.') }}</td>
+                    <td>{{ number_format($laporan->harga_bibit, 0, ',', '.') }}</td>
+                    <td>{{ number_format(($laporan->jumlah_bibit * ($laporan->kematian_ikan/100)) * $laporan->harga_bibit, 0, ',', '.') }}</td>
+                    
+                    <!-- Restoking -->
+                    <td>{{ $laporan->ukuran_ikan }}</td>
+                    <td>{{ number_format($laporan->restocking, 0, ',', '.') }}</td>
+                    
+                    <!-- Mati -->
+                    <td>{{ $laporan->ukuran_ikan }}</td>
+                    <td>{{ number_format($laporan->jumlah_bibit * ($laporan->kematian_ikan/100), 0, ',', '.') }}</td>
+                    
+                    <!-- Sisa Benih Akhir -->
+                    <td>{{ $laporan->ukuran_ikan }}</td>
+                    <td>{{ number_format($laporan->jumlah_bibit_akhir, 0, ',', '.') }}</td>
                 </tr>
-                
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                
-                <!-- Data for KOI -->
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                @endforeach
                 
                 <!-- Total Row -->
                 <tr style="font-weight: bold;">
                     <td colspan="3">JUMLAH</td>
+                    <td>{{ number_format($laporanProduksi->sum('jumlah_bibit'), 0, ',', '.') }}</td>
                     <td></td>
+                    <td>{{ number_format($laporanProduksi->sum('restocking'), 0, ',', '.') }}</td>
                     <td></td>
+                    <td>{{ number_format($laporanProduksi->sum('jumlah_bibit') + $laporanProduksi->sum('restocking'), 0, ',', '.') }}</td>
                     <td></td>
+                    <td>{{ number_format($laporanProduksi->sum(function($item) { 
+                            return $item->jumlah_bibit * ($item->kematian_ikan/100); 
+                        }), 0, ',', '.') }}</td>
                     <td></td>
+                    <td>{{ number_format($laporanProduksi->sum(function($item) { 
+                            return ($item->jumlah_bibit * ($item->kematian_ikan/100)) * $item->harga_bibit; 
+                        }), 0, ',', '.') }}</td>
                     <td></td>
+                    <td>{{ number_format($laporanProduksi->sum('restocking'), 0, ',', '.') }}</td>
                     <td></td>
+                    <td>{{ number_format($laporanProduksi->sum(function($item) { 
+                            return $item->jumlah_bibit * ($item->kematian_ikan/100); 
+                        }), 0, ',', '.') }}</td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ number_format($laporanProduksi->sum('jumlah_bibit_akhir'), 0, ',', '.') }}</td>
                 </tr>
             </tbody>
         </table>

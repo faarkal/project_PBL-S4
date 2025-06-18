@@ -14,7 +14,7 @@
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
         <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
-        <a href="#"><i class=""></i> Tambahkan Ikan</a>
+        <a href="{{ route('jenis-ikan.create') }}"><i class="fa fa-plus"></i> Tambahkan Ikan</a>
         <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 

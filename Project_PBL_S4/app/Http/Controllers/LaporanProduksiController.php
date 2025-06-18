@@ -85,4 +85,27 @@ class LaporanProduksiController extends Controller
         return view('laporan.produksi.create', compact('jenisikans'));
     }
 
+    public function pelaporan(Request $request)
+{
+    $selectedMonth = $request->input('month', date('m'));
+    $selectedYear = $request->input('year', date('Y'));
+    
+    $laporanProduksi = DB::table('bibits')
+        ->whereMonth('bulan_lahir', $selectedMonth)
+        ->whereYear('bulan_lahir', $selectedYear)
+        ->get()
+        ->map(function ($item) {
+            // Calculate derived values
+            $item->jumlah_bibit_akhir = $item->jumlah_bibit - ($item->jumlah_bibit * ($item->kematian_ikan / 100));
+            $item->total_harga = $item->jumlah_bibit_akhir * $item->harga_bibit;
+            return $item;
+        });
+    
+    return view('pelaporan', [
+        'laporanProduksi' => $laporanProduksi,
+        'selectedMonth' => $selectedMonth,
+        'selectedYear' => $selectedYear
+    ]);
+}
+
 }
