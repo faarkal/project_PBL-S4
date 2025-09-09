@@ -54,14 +54,25 @@
                 </div>
             @endif
             
-            <form action="{{ route('jenis-ikan.store') }}" method="POST">
+            <form action="{{ route('jenis-ikan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                
+
                 <div class="input-group">
                     <label for="nama_ikan" class="input-label required">Nama Ikan</label>
                     <input type="text" id="nama_ikan" name="nama_ikan" class="input-field" required>
                 </div>
-                
+
+                <div class="input-group">
+                    <label for="foto_ikan" class="input-label required">Foto Ikan</label>
+                    <input type="file" id="foto_ikan" name="foto_ikan" class="input-field" accept="image/*" required onchange="previewFoto(event)">
+                    <img id="preview-img" src="#" alt="Preview Foto Ikan" style="display:none; margin-top:10px; max-width:200px; max-height:200px;">
+                </div>
+
+                <div class="input-group">
+                    <label for="deskripsi_ikan" class="input-label required">Deskripsi Ikan</label>
+                    <textarea id="deskripsi_ikan" name="deskripsi_ikan" class="input-field" rows="3" required></textarea>
+                </div>
+
                 <button type="submit" class="submit-btn">
                     <i class="fas fa-save"></i> Simpan Data
                 </button>
@@ -182,6 +193,24 @@
                 event.stopPropagation();
             });
         });
+    </script>
+
+    <script>
+        function previewFoto(event) {
+            const input = event.target;
+            const preview = document.getElementById('preview-img');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = '#';
+                preview.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>

@@ -53,4 +53,15 @@ class HasilLaporanController extends Controller
         return view('client.hasil_laporan_produksi', compact('laporans'));
     }
 
+    public function pelaporanProduksi()
+    {
+        $laporanProduksi = LaporanProduksi::all(); // Atau query sesuai kebutuhan
+        $totalHargaBibit = $laporanProduksi->sum('total_harga');
+        
+        return view('pelaporan', [
+            'laporanProduksi' => $laporanProduksi,
+            'totalHargaBibit' => $totalHargaBibit
+        ]);
+    }
+
 }

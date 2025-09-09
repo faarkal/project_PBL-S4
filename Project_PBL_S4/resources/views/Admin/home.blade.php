@@ -87,6 +87,42 @@
                     <p>PBL kel1<br>Menteri Kelautan dan Perikanan</p>
             </div>
         </section>
+
+        <section class="data-ikan">
+            <h2>Data Jenis Ikan</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nama Ikan</th>
+                        <th>Foto Ikan</th>
+                        <th>Deskripsi Ikan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($jenisIkan as $ikan)
+                    <tr>
+                        <td>{{ $ikan->id }}</td>
+                        <td>{{ $ikan->nama_ikan }}</td>
+                        <td><img src="{{ asset('storage/' . $ikan->foto_ikan) }}" alt="{{ $ikan->nama_ikan }}" width="100"></td>
+                        <td>{{ $ikan->deskripsi_ikan }}</td>
+                        <td>
+                            <a href="{{ route('jenis-ikan.edit', $ikan->id) }}" class="edit-btn"><i class="fas fa-edit"></i> Edit</a>
+                            <form action="{{ route('jenis-ikan.destroy', $ikan->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="delete-btn" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                    <i class="fas fa-trash-alt"></i> Hapus
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            
+        </section>
     </main>
 
         <section class="info-perikanan">

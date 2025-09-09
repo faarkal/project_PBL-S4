@@ -14,9 +14,6 @@ use App\Http\Controllers\PemesananController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/', function () {
-    return view('Admin/home');
-})->name('home');
 
 Route::get('/laporan-produksi', function () {
     return view('laporan_produksi/laporan_produksi');
@@ -52,9 +49,8 @@ Route::post('/laporan-produksi/store', [LaporanProduksiController::class, 'store
 Route::get('/jenis-ikan/create', [JenisIkanController::class, 'create'])->name('jenis-ikan.create');
 Route::post('/jenis-ikan', [JenisIkanController::class, 'store'])->name('jenis-ikan.store');
 
-Route::resource('jenis-ikan', JenisIkanController::class)->only(['create', 'store', 'index']);
-
-Route::get('/pelaporan', [LaporanProduksiController::class, 'pelaporan']);
+Route::resource('jenis-ikan', JenisIkanController::class)->except(['show']);
+Route::get('/pelaporan', [LaporanController::class, 'gabungan'])->name('pelaporan');
 
 Route::get('/laporan-induk/export/excel', function () {
     return Excel::download(new LaporanIndukExport, 'laporan-induk.xlsx');
@@ -62,11 +58,12 @@ Route::get('/laporan-induk/export/excel', function () {
 
 Route::get('/visi-misi', [VisiMisiController::class, 'index']);
 
-Route::prefix('Admin')->group(function () {
-    Route::get('/Admin/pemesanan', [PemesananController::class, 'index'])->name('pemesanan.index');
-    Route::get('/Admin/pemesanan/create', [PemesananController::class, 'create'])->name('pemesanan.create');
-    Route::post('/Admin/pemesanan', [PemesananController::class, 'store'])->name('pemesanan.store');
-});
+Route::get('/Admin/pemesanan', [PemesananController::class, 'index'])->name('pemesanan.index');
+Route::get('/Admin/pemesanan/create', [PemesananController::class, 'create'])->name('pemesanan.create');
+Route::post('/Admin/pemesanan', [PemesananController::class, 'store'])->name('pemesanan.store');
 
 Route::get('/hasil/penjualan', [PemesananController::class, 'hasilPenjualan'])->name('hasil.penjualan');
 Route::put('/pemesanan/{id}/status', [PemesananController::class, 'updateStatus'])->name('pemesanan.update-status');
+
+Route::get('/hasil/laporan/penjualan', [LaporanController::class, 'penjualan'])
+     ->name('hasil.laporan.penjualan');

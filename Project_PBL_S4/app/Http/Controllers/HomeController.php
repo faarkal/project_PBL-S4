@@ -1,16 +1,14 @@
-//<?php
+<?php
 
-//namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
-//class HomeController extends Controller
-//{
-    /**
-     * Menampilkan halaman utama untuk klien
-     */
-//    public function clientHome()
- //   {
-//        return view('Client.homeclient');
- //   }
-//}
+class HomeController extends Controller
+{
+   public function index()
+    {
+        $jenisIkan = \App\Models\JenisIkan::all();
+        return view('Admin.home', compact('jenisIkan'));
+    }
+}
